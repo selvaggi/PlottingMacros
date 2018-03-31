@@ -3,58 +3,51 @@ python macros/var1D.py  --f1 files/histo_h4mu_100tev.root --h1 eta1 --l1 '100 Te
 python macros/var1D.py  --f1 files/histo_vbf_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_vbf_13tev.root --h2 eta1 --l2 '13 TeV' --tx '#eta_{j}^{max}' --xmin 0. --xmax 8 --norm --cap_in '#sqrt{s} = 100 TeV, p_{T}^{jet} > 25 GeV, VBF Higgs' --cap_upr 'FCC-hh Simulation' --out plots/vbfjet
 '''
 
-import optparse
-import ROOT, sys, re, os
-from ROOT import TFile, TH1F, TCanvas, TLegend, THStack
-
-#______________________________________________________________________________
-def split_comma_args(args):
-    new_args = []
-    for arg in args:
-        new_args.extend( arg.split(',') )
-    return new_args
+import argparse
 
 #_____________________________________________________________________________
 def options():
-    parser = optparse.OptionParser(description="generic 1D plotter")
+    parser = argparse.ArgumentParser(description="generic 1D plotter")
+
     # file1 ...
-    parser.add_option('--f1', dest='f1', type=str, default='histo1.root')
-    parser.add_option('--h1', dest='h1', type=str, default='hpt')
-    parser.add_option('--l1', dest='l1', type=str, default='ggH')
+    parser.add_argument('--f1', dest='f1', type=str, help='first file containing TH1', default='histo1.root')
+    parser.add_argument('--h1', dest='h1', type=str, help='name of TH1 in file1', default='hpt')
+    parser.add_argument('--l1', dest='l1', type=str, help='label for TH1 in file1 to be appeared in the legend', default='ggH')
 
     # file2 ...
-    parser.add_option('--f2', dest='f2', type=str, default='histo2.root')
-    parser.add_option('--h2', dest='h2', type=str, default='hpt')
-    parser.add_option('--l2', dest='l2', type=str, default='VBF')    
+    parser.add_argument('--f2', dest='f2', type=str, help='second file containing TH1', default='histo2.root')
+    parser.add_argument('--h2', dest='h2', type=str, help='name of TH1 in file1', default='hpt')
+    parser.add_argument('--l2', dest='l2', type=str, help='label for TH1 in file1 to be appeared in the legend', default='VBF')    
     
     # general parameters
-    parser.add_option('--tx', dest='tx', type=str, default='p_{T}')    
-    parser.add_option('--ty', dest='ty', type=str, default='normalized event rate')    
-    parser.add_option('--cap_upr', dest='cap_upr', type=str, default='FCC-hh Simulation (Delphes)')    
+    parser.add_argument('--tx', dest='tx', type=str, help='title of x-axis', default='p_{T}')    
+    parser.add_argument('--ty', dest='ty', type=str, help='title of y-axis', default='normalized event rate')    
+    parser.add_argument('--cap_upr', dest='cap_upr', type=str, help='caption to appear in top right corner', default='FCC-hh Simulation (Delphes)')    
     
     # if commas are present text is distributed among various lines
-    parser.add_option('--cap_in', dest='cap_in', type=str, default='#sqrt{s} = 100 TeV, L = 30 ab^{-1}')    
+    parser.add_argument('--cap_in', dest='cap_in', type=str, help='caption to appear in the canvas (separation with comma for multiple captions)', default='#sqrt{s} = 100 TeV, L = 30 ab^{-1}')    
 
-    parser.add_option('--xmin', dest='xmin', type=float)    
-    parser.add_option('--xmax', dest='xmax', type=float)    
-    parser.add_option('--ymin', dest='ymin', type=float)    
-    parser.add_option('--ymax', dest='ymax', type=float)    
+    parser.add_argument('--xmin', dest='xmin', type=float, help='minimum x value')    
+    parser.add_argument('--xmax', dest='xmax', type=float, help='maximum x value')    
+    parser.add_argument('--ymin', dest='ymin', type=float, help='minimum y value')    
+    parser.add_argument('--ymax', dest='ymax', type=float, help='maximum y value')    
 
-    parser.add_option('--norm', dest='norm', default=False, action='store_true')
-    parser.add_option('--log', dest='log', default=False, action='store_true')
-    parser.add_option('--rebin', dest='rebin', type=int, default=1)
+    parser.add_argument('--norm', dest='norm', default=False, help='normalize histograms to 1', action='store_true')
+    parser.add_argument('--log', dest='log', default=False, help='plot y-axis in log scale', action='store_true')
+    parser.add_argument('--rebin', dest='rebin', type=int, help='rebin by amount specified', default=1)
 
-    parser.add_option('--out', dest='out', type=str, default='plots/plot')
+    parser.add_argument('--out', dest='out', type=str, help='output filename', default='plots/plot')
 
     return parser.parse_args()
 
 #______________________________________________________________________________
 def main():
     
-    ops, args = options()
+    ops = options()
 
-    args = split_comma_args(args)
-
+    import ROOT, sys, re, os
+    from ROOT import TFile, TH1F, TCanvas, TLegend, THStack
+        
     # define canvas
     canvas = ROOT.TCanvas("", "", 600, 600) 
     canvas.SetLogy(ops.log)
@@ -99,7 +92,6 @@ def main():
     maxi = max(h1.GetMaximum(), h2.GetMaximum())
     
     if ops.xmin is not None and ops.xmax is not None: 
-       print 'here'
        h1.GetXaxis().SetRangeUser(ops.xmin, ops.xmax)
     
     if not ops.ymax:
@@ -163,16 +155,16 @@ def main():
     if len(rt)>2:
         text = '#it{#bf{' + rt[2] +'}}'
         if 'ell' in text:
-	   text = text.replace('#','\\')
-	Text.SetTextSize(0.05) 
-        Text.DrawLatex(0.72, 0.50, text)
+           text = text.replace('#','\\')
+        Text.SetTextSize(0.05) 
+        Text.DrawLatex(0.70, 0.50, text)
 
     if len(rt)>3:
         text = '#it{#bf{' + rt[3] +'}}'
         if 'ell' in text:
-	   text = text.replace('#','\\')
+           text = text.replace('#','\\')
         Text.SetTextSize(0.04) 
-        Text.DrawLatex(0.72, 0.40, text)
+        Text.DrawLatex(0.70, 0.40, text)
 
     canvas.RedrawAxis()
     canvas.Update()
@@ -188,6 +180,7 @@ def main():
        os.makedirs(pdir)
     canvas.Print('{}.png'.format(filename), 'png')
     canvas.Print('{}.eps'.format(filename), 'eps')
+    canvas.Print('{}.pdf'.format(filename), 'pdf')
 
 #______________________________________________________________________________
 if __name__ == '__main__': 
