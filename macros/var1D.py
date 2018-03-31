@@ -1,6 +1,6 @@
 '''
-python macros/var1D.py  --f1 files/histo_h4mu_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_h4mu_13tev.root --h2 eta1 --l2 '13 TeV' --tx '\eta_{\ell}^{max}' --xmin 0. --xmax 8.0 --norm --cap_in 'p_{T}^{\ell} > 3 \;GeV, , gg #to H #to 4#ell' --cap_upr 'FCC-hh Simulation' --out plots/etalep; display plots/etalep.eps
-python macros/var1D.py  --f1 files/histo_vbf_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_vbf_13tev.root --h2 eta1 --l2 '13 TeV' --tx '#eta_{j}^{max}' --xmin 0. --xmax 8 --norm --cap_in '#sqrt{s} = 100 TeV, p_{T}^{jet} > 25 GeV, VBF Higgs' --cap_upr 'FCC-hh Simulation' --out plots/vbfjet
+python macros/var1D.py  --f1 files/histo_h4mu_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_h4mu_13tev.root --h2 eta1 --l2 '13 TeV' --tx '\eta_{\ell}^{max}' --xmin 0. --xmax 8.0 --norm --cap_in 'p_{T}^{\ell} > 3 \;GeV, , gg #to H #to 4#ell' --cap_upr 'FCC-hh Simulation' --out plots/etalep
+python macros/var1D.py  --f1 files/histo_vbf_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_vbf_13tev.root --h2 eta1 --l2 '13 TeV' --tx '#eta_{j}^{max}' --xmin 0. --xmax 8 --norm --cap_in 'p_{T}^{jet} > 25 \;GeV, ,VBF Higgs' --cap_upr 'FCC-hh Simulation' --out plots/vbfjet
 '''
 
 import argparse
@@ -133,8 +133,7 @@ def main():
     # now text inside
     rt = re.split(",", ops.cap_in)
     text = '#bf{#it{   ' + rt[0] +'}}'
-    if 'ell' in text:
-        text = text.replace('#','\\')
+    text = text.replace('#','\\')
     
     Text.SetTextAlign(22)
     Text.SetNDC(ROOT.kTRUE) 

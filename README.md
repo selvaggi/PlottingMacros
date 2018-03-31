@@ -12,6 +12,6 @@ python macros/var1D.py  --f1 files/histo_h4mu_100tev.root --h1 eta1 --l1 '100 Te
 ```
 
 ```
-python macros/var1D.py  --f1 files/histo_vbf_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_vbf_13tev.root --h2 eta1 --l2 '13 TeV' --tx '#eta_{j}^{max}' --xmin 0. --xmax 8 --norm --cap_in 'p_{T}^{jet} > 25 GeV, , VBF Higgs' --cap_upr 'FCC-hh Simulation' --out plots/vbfjet
+python macros/var1D.py  --f1 files/histo_vbf_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_vbf_13tev.root --h2 eta1 --l2 '13 TeV' --tx '#eta_{j}^{max}' --xmin 0. --xmax 8 --norm --cap_in 'p_{T}^{jet} > 25 \;GeV, ,VBF Higgs' --cap_upr 'FCC-hh Simulation' --out plots/vbfjet
 ```
 
