@@ -9,7 +9,7 @@ eospath='/eos/experiment/fcc/hh/analyses/hhbbaa_combine/'
 #define function for parsing options
 def parseOptions():
 
-    nominal='scankl_hmaa_mhh_resg_1.3_effg_95_fake_1_btag_1_bkg_1_syst_1HHttH'
+    nominal='scankl_hmaa_mhh_resg_1.3_effg_95_fake_1_btag_1_bkg_1_syst_1HH'
     #default_file1=os.path.join(eospath,nominal)
 
     usage = ('usage: %prog [options] datasetList\n'+ '%prog -h for help')
@@ -30,17 +30,17 @@ def parseOptions():
 
 def goodName(which,number):
 	if which == "syst" :
-		if number == "noSyst" : return "Stat. Only"
-		elif "1HHttH" in number : return "#delta S/S = #delta ttH/ttH = 1%"
-		elif "2HHttH" in number : return "#delta S/S = #delta ttH/ttH = 2%"
-		elif "1HH" in number : return "#delta S/S = 1%"
-	elif which == "bkg" : return "All Bkg #times "+number
+		if number == "noSyst" : return "stat. only"
+		elif "1HHttH" in number : return "#delta_{S}/S = #delta_{ttH}/ttH = 1%"
+		elif "2HHttH" in number : return "#delta_{S}/S = #delta_{ttH}/ttH = 2%"
+		elif "1HH" in number : return "#delta_{S}/S = 1%"
+	elif which == "bkg" : return "all bkg #times "+number
 	elif which == "btag" :
 		if number == "1" : return "85% b-tag eff."
 		else : return "75% b-tag eff."
-	elif which == "fake" : return "Fake rate #times "+number
-	elif which == "effg" : return number+"% Photon eff."
-	elif which == "resg" : return "#sigma(m_{#gamma#gamma}) = "+number+" GeV"
+	elif which == "fake" : return "fake rate #times "+number
+	elif which == "effg" : return "#varepsilon_{#gamma} = "+number+"%"
+	elif which == "resg" : return "#delta(m_{#gamma#gamma}) = "+number+" GeV"
 
 def badName(which,number):
 	if which == "syst" : return number
@@ -57,6 +57,9 @@ parseOptions()
 global opt, args
 if "scankl" in opt.fileuno : variable = "kl"
 else : variable="r"
+
+if opt.stop == 0:
+    gROOT.SetBatch(True)
 
 allVars = []
 files = []
@@ -184,13 +187,13 @@ else:
     graphs[0].SetMaximum(graphs[0].GetYaxis().GetXmax()*1.3)
 
 # draw legend
-legsize = 0.06*float(len(trees))
-legend = TLegend(0.53,0.85 - legsize,0.86,0.85)
+legsize = 0.055*float(len(trees))
+legend = TLegend(0.53,0.88 - legsize,0.88,0.85)
 legend.SetFillColor(0)
 #legend.SetFillStyle(0)
 legend.SetLineColor(0)
 legend.SetShadowColor(10)
-legend.SetTextSize(0.035)
+legend.SetTextSize(0.030)
 legend.SetTextFont(42)
 
 for i in range(len(trees)) : 
@@ -215,7 +218,7 @@ line2.SetLineWidth(4)
 line2.Draw("SAME")
 
 rangex = xmax-xmin
-posx = xmax - rangex/8.
+posx = xmax - rangex/9.0
 
 Text = TLatex()
 Text.SetTextAlign(12)
@@ -281,8 +284,8 @@ c.Update()
 #c.SaveAs(titles[whichplot]+appString+variable+opt.options+".pdf")
 #c.SaveAs(titles[whichplot]+appString+variable+opt.options+".root")
 outString = "plot"
-for legs in out : outString += legs
+for legs in out : outString += variable+legs
 c.SaveAs(outString+".pdf")
-c.SaveAs(outString+".root")
+#c.SaveAs(outString+".root")
 
 if opt.stop > 0 :raw_input()
