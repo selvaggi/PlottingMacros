@@ -1,8 +1,9 @@
 '''
 python macros/var1D.py  --f1 files/histo_h4mu_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_h4mu_13tev.root --h2 eta1 --l2 '13 TeV' --tx '\eta_{\ell}^{max}' --xmin 0. --xmax 8.0 --norm --cap_in 'p_{T}^{\ell} > 3 \;GeV, , gg #to H #to 4#ell' --cap_upr 'FCC-hh Simulation' --out plots/etalep
 python macros/var1D.py  --f1 files/histo_vbf_100tev.root --h1 eta1 --l1 '100 TeV'  --f2 files/histo_vbf_13tev.root --h2 eta1 --l2 '13 TeV' --tx '#eta_{j}^{max}' --xmin 0. --xmax 8 --norm --cap_in 'p_{T}^{jet} > 25 \;GeV, ,VBF Higgs' --cap_upr 'FCC-hh Simulation' --out plots/vbfjet
-python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_hc_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_hc_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_hc_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >'  --ymax 0.05  --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , HCAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_hcal --draw_opt 'hist';
-python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_ec_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_ec_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_ec_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >' --ymax 0.07  --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , ECAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_ecal --draw_opt 'hist'
+python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 ep_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 ep_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 ep_ak4 --l3 'pile-up jet (1000PU)' --ymax 0.50 --xmax 18 --ty '< E_{layer}^{(i)} / E_{jet} >' --tx 'layer number' --cap_in 'p_{T}^{jet} > 100 \;GeV , , ' --cap_upr 'FCC-hh Simulation' --out plots/pu_long --draw_opt 'hist';
+python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_hc_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_hc_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_hc_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >'   --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , HCAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_hcal --draw_opt 'hist'
+python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_ec_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_ec_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_ec_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >'  --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , ECAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_ecal --draw_opt 'hist'
 '''
 
 import argparse
@@ -83,7 +84,7 @@ def main():
     h1.GetYaxis().SetTitleSize(0.045)
     h1.SetLineWidth(4)
     h1.SetLineColor(ROOT.kBlack)
-    h1.SetLineStyle(2)
+    h1.SetLineStyle(1)
     h1.SetTitle('')
 
     if ops.norm:
@@ -140,13 +141,14 @@ def main():
         h3.Draw(draw_option)
         legsize += 0.06
 
+    h1.Draw(draw_option)
 
     if ops.xmin is not None and ops.xmax is not None: 
        h1.GetXaxis().SetRangeUser(ops.xmin, ops.xmax)
     
     if not ops.ymax:
        if not ops.log:
-           h1.SetMaximum(maxi*1.7)
+           h1.SetMaximum(maxi*1.5)
        else:
            h1.SetMaximum(maxi*100.)
     else:

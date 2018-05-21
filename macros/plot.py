@@ -5,6 +5,8 @@ import os
 #python macros/plot.py -d scankl_hmaa_mhh_resg_2.9_effg_95_fake_1_btag_1_bkg_1_syst_1HHttH
 
 eospath='/eos/experiment/fcc/hh/analyses/hhbbaa_combine/'
+#eospath='/afs/cern.ch/user/g/gortona/public/4Michele/lotsOfStuff_v0/'
+eospath='/afs/cern.ch/user/g/gortona/public/4Michele/lotsOfStuff/'
 
 #define function for parsing options
 def parseOptions():
@@ -262,6 +264,9 @@ Text2.Draw()
 
 Text3 = TPaveText(0.37, 0.55, 0.67, 0.65,'brNDC')
 text = '#bf{#it{HH#rightarrow bb#gamma#gamma}}'
+if 'boosted' in opt.fileuno:
+    text = '#bf{#it{HH#rightarrow bbbbj}}' 
+
 
 Text3.SetTextAlign(22);
 Text3.SetTextSize(0.045) 
