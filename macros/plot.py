@@ -7,6 +7,9 @@ import os
 eospath='/eos/experiment/fcc/hh/analyses/hhbbaa_combine/'
 #eospath='/afs/cern.ch/user/g/gortona/public/4Michele/lotsOfStuff_v0/'
 eospath='/afs/cern.ch/user/g/gortona/public/4Michele/lotsOfStuff/'
+eospath='/afs/cern.ch/user/g/gortona/public/4Michele/AllSingleHiggs/'
+eospath='/afs/cern.ch/user/g/gortona/public/4Michele/AllSingleHiggs_newXsec/'
+eospath='/afs/cern.ch/user/g/gortona/public/4Michele/hehlc/'
 
 #define function for parsing options
 def parseOptions():
@@ -33,8 +36,8 @@ def parseOptions():
 def goodName(which,number):
 	if which == "syst" :
 		if number == "noSyst" : return "stat. only"
-		elif "1HHttH" in number : return "#delta_{S}/S = #delta_{ttH}/ttH = 1%"
-		elif "2HHttH" in number : return "#delta_{S}/S = #delta_{ttH}/ttH = 2%"
+		elif "1HHttH" in number : return "#delta_{S}/S = #delta_{H}/H = 1%"
+		elif "2HHttH" in number : return "#delta_{S}/S = #delta_{H}/H = 2%"
 		elif "1HH" in number : return "#delta_{S}/S = 1%"
 	elif which == "bkg" : return "all bkg #times "+number
 	elif which == "btag" :
@@ -42,7 +45,7 @@ def goodName(which,number):
 		else : return "75% b-tag eff."
 	elif which == "fake" : return "fake rate #times "+number
 	elif which == "effg" : return "#varepsilon_{#gamma} = "+number+"%"
-	elif which == "resg" : return "#delta(m_{#gamma#gamma}) = "+number+" GeV"
+	elif which == "resg" : return "#Delta m_{#gamma#gamma} = "+number+" GeV"
 
 def badName(which,number):
 	if which == "syst" : return number
