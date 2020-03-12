@@ -4,6 +4,17 @@ python macros/var1D.py  --f1 files/histo_vbf_100tev.root --h1 eta1 --l1 '100 TeV
 python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 ep_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 ep_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 ep_ak4 --l3 'pile-up jet (1000PU)' --ymax 0.50 --xmax 18 --ty '< E_{layer}^{(i)} / E_{jet} >' --tx 'layer number' --cap_in 'p_{T}^{jet} > 100 \;GeV , , ' --cap_upr 'FCC-hh Simulation' --out plots/pu_long --draw_opt 'hist';
 python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_hc_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_hc_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_hc_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >'   --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , HCAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_hcal --draw_opt 'hist'
 python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_ec_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_ec_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_ec_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >'  --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , ECAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_ecal --draw_opt 'hist'
+
+python macros/var1D.py  --f1 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h1 cumRecoMet04 --l1 '|#eta| < 4'  --f2 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h2 cumRecoMet05 --l2 '|#eta| < 5'  --f3 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h3 cumRecoMet06 --l3 '|#eta| < 6' --ty 'P(E_{T}^{miss} > E_{T}^{miss}(min))' --tx 'E_{T}^{miss}(min)' --cap_in 'p_{T}^{jet} > 50 \;GeV, , QCD events' --cap_upr 'FCC-hh Simulation' --out plots/Recomet_reso --draw_opt 'hist' --log --norm1stbin --ymin 1e-5 --xmin 0 --xmax 150; 
+
+python macros/var1D.py  --f1 /afs/cern.ch/work/s/selvaggi/private/Analysis/FCC/FlatTreeAnalyzer/BatchOutput/hmumu_fcc/sel_H_125/root_H_125/histos.root --h1 H(125)_sel0_mh --l1 'FCC'  --f2 /afs/cern.ch/work/s/selvaggi/private/Analysis/FCC/FlatTreeAnalyzer/BatchOutput/hmumu_helhc/sel_H_125/root_H_125/histos.root --h2 H(125)_sel0_mh --l2 'CMS' --tx 'm_{#mu #mu}' --xmin 122.5 --xmax 127.5 --norm --cap_in 'p_{T}^{\ell} > 3 \;GeV, , gg #to H #to 4#ell' --cap_upr 'FCC-hh Simulation' --out plots/mmumu
+
+
+python macros/var1D.py  --f1 /eos/user/s/selvaggi/DelphesNose/pp_zd_m15_HFNose/histos/out/histos.root --h1 histEta2 --l1 'm_{Z_{D}} = 15 GeV'  --f2 /eos/user/s/selvaggi/DelphesNose/pp_zd_m35_HFNose/histos/out/histos.root --h2 histEta2 --l2 'm_{Z_{D}} = 35 GeV'  --f3 /eos/user/s/selvaggi/DelphesNose/pp_zd_m55_HFNose/histos/out/histos.root --h3 histEta2 --l3 'm_{Z_{D}} = 55 GeV' --ty 'a. u.' --tx '#eta_{lep}^{max}' --out plots/darkphot_etamax --draw_opt 'hist' --norm --cap_in '#sqrt{s} = 14 TeV,' --cap_upr 'CMS-PhaseII Simulation (Delphes)'
+python macros/var1D.py  --f1 /eos/user/s/selvaggi/DelphesNose/pp_zd_m15_HFNose/histos/out/histos.root --h1 histRecoEECF_M --l1 'HF-Nose'  --f2 /eos/user/s/selvaggi/DelphesNose/pp_zd_m15_HF/histos/out/histos.root --h2 histRecoEECF_M --l2 'HF'  --ty 'a. u.' --tx 'm_{e^{+}e^{-}} [GeV/c^{2}]' --out plots/darkphot_mee --draw_opt 'hist' --norm  --cap_in '#sqrt{s} = 14 TeV, m_{Z_{D}} = 15 GeV , ' --cap_upr 'CMS-PhaseII Simulation (Delphes)' --xmin 10. --xmax 20.
+python macros/var1D.py  --f2 /eos/user/s/selvaggi/DelphesNose/pp_zd_m15_HFNose/histos/out/histos.root --h2 histRecoMMCF_M --l2 'Cen-Fwd'  --f1 /eos/user/s/selvaggi/DelphesNose/pp_zd_m15_HF/histos/out/histos.root --h1 histRecoMMCC_M --l1 'Cen-Cen' --f3 /eos/user/s/selvaggi/DelphesNose/pp_zd_m15_HFNose/histos/out/histos.root --h3 histRecoMMFF_M --l3 'Fwd-Fwd'   --ty 'a. u.' --tx 'm_{#mu^{+}#mu^{-}} [GeV/c^{2}]' --out plots/darkphot_mmumu --draw_opt 'hist' --norm  --cap_in '#sqrt{s} = 14 TeV, , ' --cap_upr 'CMS-PhaseII Simulation (Delphes)' --xmin 10. --xmax 20.
+
+
 '''
 
 import argparse
@@ -27,6 +38,11 @@ def options():
     parser.add_argument('--h3', dest='h3', type=str, help='name of TH1 in file1', default='')
     parser.add_argument('--l3', dest='l3', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
 
+    # file4 ...
+    parser.add_argument('--f4', dest='f4', type=str, help='second file containing TH1', default='')
+    parser.add_argument('--h4', dest='h4', type=str, help='name of TH1 in file1', default='')
+    parser.add_argument('--l4', dest='l4', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
+
     # general parameters
     parser.add_argument('--tx', dest='tx', type=str, help='title of x-axis', default='p_{T}')    
     parser.add_argument('--ty', dest='ty', type=str, help='title of y-axis', default='normalized event rate')    
@@ -41,6 +57,10 @@ def options():
     parser.add_argument('--ymax', dest='ymax', type=float, help='maximum y value')    
 
     parser.add_argument('--norm', dest='norm', default=False, help='normalize histograms to 1', action='store_true')
+    parser.add_argument('--norm1stbin', dest='norm1stbin', default=False, help='normalize histograms to 1', action='store_true')
+    parser.add_argument('--normlastbin', dest='normlastbin', default=False, help='normalize histograms to 1', action='store_true')
+    parser.add_argument('--normnbin', dest='normnbin', help='normalize histograms to 1', type=int, default=-1)
+
     parser.add_argument('--log', dest='log', default=False, help='plot y-axis in log scale', action='store_true')
     parser.add_argument('--rebin', dest='rebin', type=int, help='rebin by amount specified', default=1)
 
@@ -83,12 +103,24 @@ def main():
     h1.GetXaxis().SetTitleSize(0.045)
     h1.GetYaxis().SetTitleSize(0.045)
     h1.SetLineWidth(4)
-    h1.SetLineColor(ROOT.kBlack)
+    #h1.SetLineColor(ROOT.kBlack)
+    h1.SetLineColor(ROOT.kOrange+1)
     h1.SetLineStyle(1)
     h1.SetTitle('')
 
     if ops.norm:
         h1.Scale(1./h1.Integral(0, h1.GetNbinsX()+1))
+
+    if ops.norm1stbin:
+        scale = h1.GetBinContent(1)
+        h1.Scale(1/scale)
+    if ops.normlastbin:
+        scale = h1.GetBinContent(h1.GetNbinsX())        
+        h1.Scale(1/scale)
+    if ops.normnbin >=0:
+        scale = h1.GetBinContent(ops.normnbin)        
+        h1.Scale(1/scale)
+
 
     h1.Rebin(ops.rebin)
 
@@ -101,7 +133,7 @@ def main():
 
     draw_option = 'same '+draw_option
 
-    legsize = 0.06
+    legsize = 0.05
     ylegsize = legsize
 
     # if option 2 is defined
@@ -111,10 +143,24 @@ def main():
         h2 = hfile2.Get(ops.h2)
         h2.SetTitle(ops.l2)
         h2.SetLineWidth(4)
-        h2.SetLineColor(ROOT.kRed)
+        h2.SetLineColor(ROOT.kPink+10)
         h2.SetLineStyle(1)
         if ops.norm:
            h2.Scale(1./h2.Integral(0, h2.GetNbinsX()+1))
+
+        if ops.norm1stbin:
+            scale = h2.GetBinContent(1)
+            h2.Scale(1/scale)
+
+        if ops.normlastbin:
+            scale = h2.GetBinContent(h2.GetNbinsX())
+            h2.Scale(1/scale)
+
+        if ops.normnbin >=0:
+            scale = h2.GetBinContent(ops.normnbin)        
+            h2.Scale(1/scale)
+
+
         h2.Rebin(ops.rebin)
         max2 =  h2.GetMaximum() 
         maxi = max(maxi, max2)
@@ -130,16 +176,68 @@ def main():
         h3.SetTitle(ops.l3)
         h3.SetLineWidth(4)
         h3.SetLineColor(ROOT.kBlue)
-        h3.SetLineStyle(7)
+        #h3.SetLineStyle(7)
+        h3.SetLineStyle(1)
         if ops.norm:
            h3.Scale(1./h3.Integral(0, h3.GetNbinsX()+1))
+
+        if ops.norm1stbin:
+            scale = h3.GetBinContent(1)
+            h3.Scale(1/scale)
+
+        if ops.normlastbin:
+            scale = h3.GetBinContent(h3.GetNbinsX())
+            h3.Scale(1/scale)
+
+        if ops.normnbin >=0:
+            scale = h3.GetBinContent(ops.normnbin)        
+            h3.Scale(1/scale)
+
+
         h3.Rebin(ops.rebin)
         max3 =  h3.GetMaximum() 
         maxi = max(maxi, max3)
         ylegsize += legsize
 
         h3.Draw(draw_option)
-        legsize += 0.06
+        legsize += legsize
+
+
+
+    max4 = 0
+    if ops.f4:
+        hfile4 = ROOT.TFile(ops.f4)
+        h4 = hfile4.Get(ops.h4)
+        h4.SetTitle(ops.l4)
+        h4.SetLineWidth(4)
+        h4.SetLineColor(ROOT.kGreen+2)
+        #h4.SetLineStyle(9)
+        h4.SetLineStyle(1)
+        if ops.norm:
+           h4.Scale(1./h4.Integral(0, h4.GetNbinsX()+1))
+
+        if ops.norm1stbin:
+            scale = h4.GetBinContent(1)
+            h4.Scale(1/scale)
+
+        if ops.normlastbin:
+            scale = h4.GetBinContent(h4.GetNbinsX())
+            h4.Scale(1/scale)
+
+        if ops.normnbin >=0:
+            scale = h4.GetBinContent(ops.normnbin)        
+            h4.Scale(1/scale)
+
+        h4.Rebin(ops.rebin)
+        max4 =  h4.GetMaximum() 
+        maxi = max(maxi, max4)
+        ylegsize += legsize
+
+        h4.Draw(draw_option)
+        legsize += legsize
+
+
+    print 'pass'
 
     h1.Draw(draw_option)
 
@@ -148,7 +246,7 @@ def main():
     
     if not ops.ymax:
        if not ops.log:
-           h1.SetMaximum(maxi*1.5)
+           h1.SetMaximum(maxi*1.7)
        else:
            h1.SetMaximum(maxi*100.)
     else:
@@ -157,20 +255,25 @@ def main():
     if ops.ymin:
        h1.SetMinimum(ops.ymin)
 
+    print 'set maxima and minima'
+
 
     # build legend
-    leg = TLegend(0.55,0.88-legsize,0.90,0.88)
+    leg = TLegend(0.65,0.86-legsize,0.90,0.86)
     leg.AddEntry(h1,ops.l1,"l")
     if ops.f2:
         leg.AddEntry(h2,ops.l2,"l")
     if ops.f3:
         leg.AddEntry(h3,ops.l3,"l")
+    if ops.f4:
+        leg.AddEntry(h4,ops.l4,"l")
 
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetLineColor(0)
     leg.Draw() 
 
+    print 'building legend'
 
     # add captions
     Text = ROOT.TLatex()
@@ -185,7 +288,7 @@ def main():
     # now text inside
     rt = re.split(",", ops.cap_in)
     text = '#bf{#it{   ' + rt[0] +'}}'
-    text = text.replace('#','\\')
+    #text = text.replace('#','\\')
     
     Text.SetTextAlign(22)
     Text.SetNDC(ROOT.kTRUE) 
@@ -203,20 +306,22 @@ def main():
     print rt[0]
     print rt[1]
 
+    print 'writing text'
+
     # this happens only if additional text
     if len(rt)>2:
         text = '#it{#bf{' + rt[2] +'}}'
         if 'ell' in text:
            text = text.replace('#','\\')
-        Text.SetTextSize(0.05) 
-        Text.DrawLatex(0.69, 0.60, text)
+        Text.SetTextSize(0.03) 
+        Text.DrawLatex(0.30, 0.70, text)
 
     if len(rt)>3:
         text = '#it{#bf{' + rt[3] +'}}'
         if 'ell' in text:
            text = text.replace('#','\\')
-        Text.SetTextSize(0.04) 
-        Text.DrawLatex(0.69, 0.50, text)
+        Text.SetTextSize(0.03) 
+        Text.DrawLatex(0.50, 0.60, text)
 
     canvas.RedrawAxis()
     canvas.Update()
@@ -224,14 +329,17 @@ def main():
     canvas.Modified()
     canvas.Update()
 
+    print 'canvas updating'
+
     pdir = os.path.dirname(ops.out)
     name = os.path.basename(ops.out)
     filename = pdir + '/' + name
     
     if not os.path.exists(pdir):
        os.makedirs(pdir)
-    canvas.Print('{}.png'.format(filename), 'png')
-    canvas.Print('{}.eps'.format(filename), 'eps')
+    
+    #canvas.Print('{}.png'.format(filename), 'png')
+    #canvas.Print('{}.eps'.format(filename), 'eps')
     canvas.Print('{}.pdf'.format(filename), 'pdf')
 
 #______________________________________________________________________________

@@ -67,7 +67,7 @@ def getYield(h, lumi):
     yld *= intLumi
 
     return yld
-
+'''
 colors = []
 colors.append(kRed);
 colors.append(kOrange-3);
@@ -76,13 +76,33 @@ colors.append(kBlue-3);
 colors.append(kRed-9);
 colors.append(kYellow+2);
 colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+colors.append(kMagenta+1);
+'''
+
+colors = {}
+colors[0] = kRed;
+colors[2] = kOrange -3;
+colors[1] = kGreen+2
+colors[5] = kGreen+2;
+colors[10] = kBlue-3;
+colors[3] = kBlue-3;
+colors[20] = kYellow+2;
 
 
 path='/afs/cern.ch/work/s/selvaggi/private/Analysis/FCC/FlatTreeAnalyzer/vbs_wwss/'
 
 
 #kappas = ['050', '090', '095', '100', '105', '110','130', '150']
-kappas = ['090', '095', '100', '105', '110']
+#kappas = ['090', '095', '100', '105', '110']
+#kappas = ['090', '095', '100', '105', '110']
+kappas = ['090', '100', '110']
 #kappas = ['050', '070','080','090', '095', '100', '105', '110','120','130', '150']
 
 
@@ -91,10 +111,10 @@ kappas = ['090', '095', '100', '105', '110']
 
 
 # actual plotting
-c = TCanvas("c","c",600,600)
-c.SetTicks(1,1)
-c.SetLeftMargin(0.14)
-c.SetRightMargin(0.08)
+ca = TCanvas("c","c",600,600)
+ca.SetTicks(1,1)
+ca.SetLeftMargin(0.14)
+ca.SetRightMargin(0.08)
 #c.SetGridx()
 #c.SetGridy()
 
@@ -110,17 +130,32 @@ mg = TMultiGraph()
 graphs = {}
 
 leg = {}
+'''
 leg[0]="m_{l^{+}l^{+}} > 50 GeV"
 leg[2]="m_{l^{+}l^{+}} > 400 GeV"
 leg[4]="m_{l^{+}l^{+}} > 800 GeV"
+leg[8]="m_{l^{+}l^{+}} > 1500 GeV"
+'''
 
-for j in [4,2,0]:
+leg[0]="m_{l^{+}l^{+}} > 50 GeV"
+leg[1]="m_{l^{+}l^{+}} > 100 GeV"
+leg[2]="m_{l^{+}l^{+}} > 200 GeV"
+leg[3]="m_{l^{+}l^{+}} > 300 GeV"
+leg[5]="m_{l^{+}l^{+}} > 500 GeV"
+leg[10]="m_{l^{+}l^{+}} > 1000 GeV"
+leg[20]="m_{l^{+}l^{+}} > 2000 GeV"
+
+
+#for j in [8,4,2,0]:
+#for j in [20,10,5,2,0]:
+#for j in [10,5,2,0]:
+for j in [3,2,1,0]:
 
     sel = '{}'.format(j)
 
     hmll_sig0 = f.Get("W^{{#pm}} W^{{#pm}} j j 100_sel{}_mll".format(sel)).Clone()
     
-    print ' ---  selection: {} ----'.format(j)
+    #print ' ---  selection: {} ----'.format(j)
     s0 =  getYield(hmll_sig0, intLumi)
 
     graph = TGraphErrors()
@@ -132,6 +167,7 @@ for j in [4,2,0]:
     graphs[j].SetTitle(leg[j])
 
 
+    rel_err0 = 0.
     for i in range(len(kappas)):
 
 	k =  kappas[i]
@@ -150,6 +186,12 @@ for j in [4,2,0]:
 
 	b = b1+b2
 
+        #print k
+
+        
+        if k=='105':
+          s *= 6142/77964.511407
+        
 	dmu_mu = math.sqrt(s + b)/s
 	#print s, b1, b2, dmu_mu, dmu_mu*s
 	err = dmu_mu*s
@@ -160,14 +202,46 @@ for j in [4,2,0]:
 	knew = k[:1] + '.' + k[1:]
 	kf=float(knew)
 
-        print 'kw:', kf, 'S:', s,'B:', b, 'stat.err: ', dmu_mu, 'S/S0:',rel_sigma, 'err(S/S0):', rel_err
+        #print 'kw:', kf, 'S:', s,'B:', b, 'stat.err: ', dmu_mu, 'S/S0:',rel_sigma, 'err(S/S0):', rel_err
+
+        if k=='100':
+          rel_err0 = rel_err
 
 	graphs[j].SetPoint(i,kf, rel_sigma)
 	graphs[j].SetPointError(i,0.,rel_err)
 
     mg.Add(graphs[j])
 
-c.cd()
+    # fit graphs
+    name = 'parabola_{}'.format(j)
+    func = ROOT.TF1(name, '[0]*x^2 + [1]*x + [2]',0.80, 1.20)
+    graphs[j].Fit(name, 'Q0', '', 0.90, 1.10)
+
+    func.SetLineColor(colors[j])
+    func.SetLineWidth(3)
+ 
+    a = func.GetParameter(0)
+    b = func.GetParameter(1)
+    c = func.GetParameter(2)
+
+    #print a, b, c
+
+   
+    #C = c - 1. - rel_err0 
+    C = c - 1. - rel_err0 
+    #C = c - 1. - rel_err/2. 
+
+    Delta = b**2 - 4.*a*C
+    
+    sol1 = (-b - math.sqrt(Delta))/(2*a)
+    sol2 = (-b + math.sqrt(Delta))/(2*a)   
+
+    #print 'sol1: ', sol1, 'sol2: ', sol2     
+    print leg[j], '#kappa_W in [{:.2f},{:.2f}]'.format(sol1,sol2)     
+
+
+
+ca.cd()
 
 
 mg.Draw('ACP')
@@ -175,7 +249,7 @@ mg.Draw('ACP')
 mg.GetXaxis().SetTitle("#kappa_{W}")
 mg.GetYaxis().SetTitle("#sigma / #sigma_{SM}")
 
-lege = c.BuildLegend(0.45,0.70,0.80,0.88)
+lege = ca.BuildLegend(0.45,0.70,0.80,0.88)
 lege.SetFillColor(0)
 lege.SetFillStyle(0)
 lege.SetLineColor(0)
@@ -207,6 +281,6 @@ Text3.SetLineStyle(0)
 Text3.SetBorderSize(0)
 Text3.Draw()
 
-c.SaveAs("ll_vbs.png")
+ca.SaveAs("ll_vbs.pdf")
 
 

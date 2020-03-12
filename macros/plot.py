@@ -8,8 +8,9 @@ eospath='/eos/experiment/fcc/hh/analyses/hhbbaa_combine/'
 #eospath='/afs/cern.ch/user/g/gortona/public/4Michele/lotsOfStuff_v0/'
 eospath='/afs/cern.ch/user/g/gortona/public/4Michele/lotsOfStuff/'
 eospath='/afs/cern.ch/user/g/gortona/public/4Michele/AllSingleHiggs/'
-eospath='/afs/cern.ch/user/g/gortona/public/4Michele/AllSingleHiggs_newXsec/'
-eospath='/afs/cern.ch/user/g/gortona/public/4Michele/hehlc/'
+#eospath='/afs/cern.ch/user/g/gortona/public/4Michele/AllSingleHiggs_newXsec/'
+eospath='/afs/cern.ch/user/g/gortona/work/public/4Michele/AllSingleHiggs_newXsec/'
+#eospath='/afs/cern.ch/user/g/gortona/public/4Michele/hehlc/'
 
 #define function for parsing options
 def parseOptions():
