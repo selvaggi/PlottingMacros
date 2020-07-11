@@ -1,0 +1,132 @@
+python var1D.py --f1 nose_puidtiming_bdt_v2.root  --h1 signal_jets_time_moments_0 --l1 'VBF jets' --f2 nose_puidtiming_bdt_v2.root --h2 backg_jets_time_moments_0 --l2 'PU jets'  --ty 'event fraction' --tx '#mu = #Sigma E_{i} t_{i} / E_{jet} (ns)' --cap_in ' HF-Nose , (timing) ,' --cap_upr 'HF-Nose PhaseII Simulation' --out plots/weighted_mean_time --draw_opt 'hist' --xmin 0. --xmax 14. --norm  --rebin 1 ;
+
+python var1D.py --f1 nose_puidtiming_bdt_v2.root  --h1 signal_jets_cumlong_fracs_2 --l1 'VBF jets' --f2 nose_puidtiming_bdt_v2.root --h2 backg_jets_cumlong_fracs_2 --l2 'PU jets'  --ty 'event fraction' --tx 'E_{[1-2]}/E_{jet}' --cap_in ' HF-Nose , (longitudinal) ,' --cap_upr 'HF-Nose PhaseII Simulation' --out plots/long12 --draw_opt 'hist' --xmin 0. --xmax 0.6 --norm  --rebin 1 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_all_200.0_100000.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_all_200.0_100000.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_all_200.0_100000.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_all_200.0_100000.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_all --draw_opt 'hist' --norm  --rebin 50 ;
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_all_200.0_100000.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_all_200.0_100000.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_all_200.0_100000.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_all_200.0_100000.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_all --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_cc_200.0_100000.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_cc_200.0_100000.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_cc_200.0_100000.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_cc_200.0_100000.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_cc_200.0_100000.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_cc_200.0_100000.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_cc_200.0_100000.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_cc_200.0_100000.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_cc_200.0_300.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_cc_200.0_300.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_cc_200.0_300.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_cc_200.0_300.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet , 200 < p_{T} < 300 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc_200.0_300.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_cc_200.0_300.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_cc_200.0_300.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_cc_200.0_300.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_cc_200.0_300.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) flavours  , 200 < p_{T} < 300 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc_200.0_300.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_cc_300.0_500.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_cc_300.0_500.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_cc_300.0_500.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_cc_300.0_500.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet , 300 < p_{T} < 500 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc_300.0_500.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_cc_300.0_500.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_cc_300.0_500.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_cc_300.0_500.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_cc_300.0_500.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) flavours  , 300 < p_{T} < 500 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc_300.0_500.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_cc_500.0_1000.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_cc_500.0_1000.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_cc_500.0_1000.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_cc_500.0_1000.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet , 500 < p_{T} < 1000 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc_500.0_1000.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_cc_500.0_1000.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_cc_500.0_1000.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_cc_500.0_1000.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_cc_500.0_1000.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) flavours  , 500 < p_{T} < 1000 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc_500.0_1000.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hreg_qcd_cc_200.0_100000.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hreg_qcd_cc_200.0_100000.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hreg_qcd_cc_200.0_100000.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hreg_qcd_cc_200.0_100000.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg}' --cap_in ' c / cc flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc_spectrum --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_all_200.0_100000.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_all_200.0_100000.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_all_200.0_100000.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_all_200.0_100000.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_all_spikes --draw_opt 'hist' --norm  --rebin 0 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_all_200.0_100000.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_all_200.0_100000.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_all_200.0_100000.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_all_200.0_100000.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_all_spikes --draw_opt 'hist' --norm  --rebin 0 ;
+
+## new selection
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_hub_dil4_all.root  --h1 hdreg_higgs_cc_300.0_500.0 --l1 'Higgs (Hub/all)' --f2 ../files/massreg_all_cc_sel0_hub_dil4_all.root --h2 hdreg_higgs_cc_300.0_500.0 --l2 'Higgs (HUB/all) (sel0)'   --f3 ../files/massreg_all_cc_sel1_hub_dil4_all.root --h3 hdreg_higgs_cc_300.0_500.0 --l3 'Higgs (HUB/all) (sel1)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet , 300 < p_{T} < 500 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc_300.0_500.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_hub_dil4_all.root  --h1 hdreg_qcd_cc_300.0_500.0 --l1 'QCD (Hub/all)' --f2 ../files/massreg_all_cc_sel0_hub_dil4_all.root --h2 hdreg_qcd_cc_300.0_500.0 --l2 'QCD (HUB/all) (sel0)'   --f3 ../files/massreg_all_cc_sel1_hub_dil4_all.root --h3 hdreg_qcd_cc_300.0_500.0 --l3 'QCD (HUB/all) (sel1)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet , 300 < p_{T} < 500 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc_300.0_500.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_hub_dil4_all.root  --h1 hdreg_higgs_all_300.0_500.0 --l1 'Higgs (Hub/all)' --f2 ../files/massreg_all_cc_sel0_hub_dil4_all.root --h2 hdreg_higgs_all_300.0_500.0 --l2 'Higgs (HUB/all) (sel0)'   --f3 ../files/massreg_all_cc_sel1_hub_dil4_all.root --h3 hdreg_higgs_all_300.0_500.0 --l3 'Higgs (HUB/all) (sel1)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet , 300 < p_{T} < 500 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_all_300.0_500.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+python var1D.py --f1 ../files/plots_massreg/massreg_all_hub_dil4_all.root  --h1 hdreg_qcd_all_300.0_500.0 --l1 'QCD (Hub/all)' --f2 ../files/massreg_all_cc_sel0_hub_dil4_all.root --h2 hdreg_qcd_all_300.0_500.0 --l2 'QCD (HUB/all) (sel0)'   --f3 ../files/massreg_all_cc_sel1_hub_dil4_all.root --h3 hdreg_qcd_all_300.0_500.0 --l3 'QCD (HUB/all) (sel1)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet , 300 < p_{T} < 500 ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_all_300.0_500.0 --draw_opt 'hist' --norm  --rebin 50 ;
+
+
+
+python var1D.py --f1 ../files/massreg_all_hub_dil4_all_msd_gt_20.root  --h1 hdreg_qcd_all_200.0_100000.0 --l1 'QCD  m_{SD} > 20 GeV' --f2 ../files/massreg_all_hub_dil4_all_msd_lt_20.root --h2 hdreg_qcd_all_200.0_100000.0 --l2 'QCD  m_{SD} < 20 GeV' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in '  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_msd_gt --draw_opt 'hist' --norm  --rebin 50 ;
+
+#### new plots with masscut
+
+### higgs vs QCD inclusive comparison
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hdreg_higgs_all_200.0_100000.0 --l1 'Higgs (reg)' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h2 hdsd_higgs_all_200.0_100000.0 --l2 'Higgs (SD)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_all --draw_opt 'hist' --norm  --rebin 50 ;
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hdreg_qcd_all_200.0_100000.0 --l1 'QCD (reg)' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h2 hdsd_qcd_all_200.0_100000.0 --l2 'Higgs (SD)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_all --draw_opt 'hist' --norm  --rebin 50 ;
+
+### sculpting
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hreg_qcd_all_200.0_100000.0 --l1 'QCD (reg)' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h2 hsd_qcd_all_200.0_100000.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_all --draw_opt 'hist' --norm  --rebin 50 --log ;
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hreg_qcd_cc_300.0_500.0 --l1 'QCD-cc (reg) [300,500]' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h2 hsd_qcd_cc_300.0_500.0 --l2 'QCD-cc (sd) [300,500]' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' cc flavour  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_cc_300_500 --draw_opt 'hist' --norm  --rebin 50 --log ;
+
+
+### flavour comparison
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hdreg_higgs_qq_200.0_100000.0 --l1 'Higgs (qq)' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h2 hdreg_higgs_cc_200.0_100000.0 --l2 'Higgs (cc)'  --f3 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h3 hdreg_higgs_bb_200.0_100000.0 --l3 'Higgs (bb)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_flavours --draw_opt 'hist' --norm  --rebin 50 ;
+
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hdreg_qcd_qq_200.0_100000.0 --l1 'QCD (qq)' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h2 hdreg_qcd_cc_200.0_100000.0 --l2 'QCD (cc)'  --f3 ../files/massreg_all_hub_dil4_train_all_nomasscut.root --h3 hdreg_qcd_bb_200.0_100000.0 --l3 'QCD (bb)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_flavours --draw_opt 'hist' --norm  --rebin 50 ;
+
+### pt comparison (only cc)
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hdreg_qcd_cc_200.0_300.0 --l1 'QCD (cc) [200,300]' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h2 hdreg_qcd_cc_300.0_500.0 --l2 'QCD (cc) [300,500]' --f3 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h3 hdreg_qcd_cc_500.0_1000.0 --l3 'QCD (cc) [500,1000]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_pt --draw_opt 'hist' --norm  --rebin 100 ;
+
+python var1D.py --f1 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h1 hdreg_higgs_cc_200.0_300.0 --l1 'Higgs (cc) [200,300]' --f2 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h2 hdreg_higgs_cc_300.0_500.0 --l2 'Higgs (cc) [300,500]' --f3 ../files/massreg_all_hub_dil4_train_all_nomasscut.root  --h3 hdreg_higgs_cc_500.0_1000.0 --l3 'Higgs (cc) [500,1000]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_pt --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+
+
+## pt comparison each
+
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root  --h1 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l1 'Higgs (cc) [200,300]' --f2 ../files/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root  --h2 hdreg_higgs_cc_pt300.0_500.0_m100.0_150.0 --l2 'Higgs (cc) [300,500]' --f3 ../files/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root  --h3 hdreg_higgs_cc_pt500.0_1000.0_m100.0_150.0 --l3 'Higgs (cc) [500,1000]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_pt_ptcut_ccsel1 --draw_opt 'hist' --norm  --rebin 100 ;
+
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root  --h1 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l1 'Higgs (cc) [200,300]' --f2 ../files/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root  --h2 hdreg_higgs_cc_pt300.0_500.0_m100.0_150.0 --l2 'Higgs (cc) [300,500]' --f3 ../files/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root  --h3 hdreg_higgs_cc_pt500.0_1000.0_m100.0_150.0 --l3 'Higgs (cc) [500,1000]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_pt_ccsel1 --draw_opt 'hist' --norm  --rebin 100 ;
+
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_bbccsel1.root  --h1 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l1 'Higgs (cc) [200,300]' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_bbccsel1.root  --h2 hdreg_higgs_cc_pt300.0_500.0_m100.0_150.0 --l2 'Higgs (cc) [300,500]' --f3 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_bbccsel1.root  --h3 hdreg_higgs_cc_pt500.0_1000.0_m100.0_150.0 --l3 'Higgs (cc) [500,1000]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_pt_bbccsel1 --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+## low pt bin
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root  --h1 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l1 'Higgs (cc) [200,300]' --f2 ../files/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root  --h2 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l2 'Higgs (cc) [200,300]' --f3 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_bbccsel1.root  --h3 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l3 'Higgs (cc) [200,300]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_pt200_300 --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+
+
+
+### generic regression v1
+
+## H->cc
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h1 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l1 'H -> cc (reg.)' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h2 hdsd_higgs_cc_pt200.0_300.0_m100.0_150.0 --l2 'H -> cc (SD)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in '     200 < p_{T} < 300 GeV,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc_200.0_300.0_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+## H->bb
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h1 hdreg_higgs_bb_pt200.0_300.0_m100.0_150.0 --l1 'H -> bb (reg.)' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h2 hdsd_higgs_bb_pt200.0_300.0_m100.0_150.0 --l2 'H -> bb (SD)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in '     200 < p_{T} < 300 GeV,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_bb_200.0_300.0_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+
+
+## pt comp H->cc
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h1 hdreg_higgs_cc_pt200.0_300.0_m100.0_150.0 --l1 'Higgs (cc) [200,300]' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h2 hdreg_higgs_cc_pt300.0_500.0_m100.0_150.0 --l2 'Higgs (cc) [300,500]' --f3 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h3 hdreg_higgs_cc_pt500.0_1000.0_m100.0_150.0 --l3 'Higgs (cc) [500,1000]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' p_{T} comparison,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_cc_pt_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+## pt comp H->bb
+python var1D.py --f1 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h1 hdreg_higgs_bb_pt200.0_300.0_m100.0_150.0 --l1 'Higgs (bb) [200,300]' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h2 hdreg_higgs_bb_pt300.0_500.0_m100.0_150.0 --l2 'Higgs (bb) [300,500]' --f3 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root  --h3 hdreg_higgs_bb_pt500.0_1000.0_m100.0_150.0 --l3 'Higgs (bb) [500,1000]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' p_{T} comparison,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_bb_pt_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+
+
+
+## sculpting QCD
+python var1D.py --f1  ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h1 hreg_qcd_all_pt200.0_300.0_m0.0_1000.0 --l1 'QCD (reg)' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h2 hsd_qcd_all_pt200.0_300.0_m0.0_1000.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' all flavours  ,      200 < p_{T} < 300 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_all_200.0_300.0_gen --draw_opt 'hist' --norm  --rebin 50 --log ;
+
+
+python var1D.py --f1  ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h1 hreg_qcd_all_pt300.0_500.0_m0.0_1000.0 --l1 'QCD (reg)' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h2 hsd_qcd_all_pt300.0_500.0_m0.0_1000.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' all flavours  ,      300 < p_{T} < 500 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_all_300.0_500.0_gen --draw_opt 'hist' --norm  --rebin 50 --log ;
+
+python var1D.py --f1  ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h1 hreg_qcd_all_pt500.0_1000.0_m0.0_1000.0 --l1 'QCD (reg)' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h2 hsd_qcd_all_pt500.0_1000.0_m0.0_1000.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' all flavours  ,      500 < p_{T} < 1000 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_all_500.0_1000.0_gen --draw_opt 'hist' --norm  --rebin 50 --log ;
+
+
