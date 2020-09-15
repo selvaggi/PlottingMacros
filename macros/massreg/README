@@ -1,0 +1,178 @@
+
+
+python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/mass_regression_ak15_2020025_20epochs_dilution10.log plots_massreg/test.png; display plots_massreg/test.png
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_long/test_regression_gpu_long.root plots_massreg/massRegak15_2020025_20epochs_dilution10.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_logmse_dil4/test_regression_gpu_mse_dil4.root plots_massreg/test_regression_gpu_mse_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_long_dil1/test_regression_gpu_long_dil1.root plots_massreg/test_regression_gpu_long_dil1.root
+
+
+
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_long_dil1/test_regression_gpu_long_dil1.root plots_massreg/test_regression_gpu_mae_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_mse_dil4/test_regression_gpu_mse_dil4.root plots_massreg/test_regression_gpu_mse_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_partonmass_mae_dil4/test_regression_gpu_partonmass_mae_dil4.root plots_massreg/test_regression_gpu_partonmass_mae_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_partonmass_mse_dil4/test_regression_gpu_partonmass_mse_dil4.root plots_massreg/test_regression_gpu_partonmass_mse_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_higgsonly_mse_dil4/test_regression_gpu_higgsonly_mse_dil4.root plots_massreg/test_regression_gpu_higgsonly_mse_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/test_regression_gpu_higgsonly_mae_dil4/test_regression_gpu_higgsonly_mae_dil4.root plots_massreg/test_regression_gpu_higgsonly_mae_dil4.root
+
+
+
+
+
+
+
+## plots
+
+python var1D.py  --f1 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h1 hdsd_higgs --l1 'soft drop' --f2 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h2 hdreg_higgs --l2 'regression'  --ty '# events' --tx '(m_{reco} - m_{target})/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_higgs --norm --draw_opt 'hist' --xmin -1 --xmax 1. --ymax 0.14 ; display massreg/massres_higgs.pdf
+python var1D.py  --f1 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h1 hdsd_qcd --l1 'soft drop' --f2 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h2 hdreg_qcd --l2 'regression'  --ty '# events' --tx '(m_{reco} - m_{target})/m_{target}' --cap_in ' QCD sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_qcd --norm --draw_opt 'hist' --xmin -1 --xmax 1. --ymax 0.20 ; display massreg/massres_qcd.pdf
+
+
+
+python var1D.py  --f1 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h1 hdsd_higgs_qq --l1 'H #rightarrow qq' --f2 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h2 hdreg_higgs_cc --l2 'H #rightarrow cc' --f1 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h1 hdsd_higgs_bb --l1 'H #rightarrow bb'  --ty '# events' --tx '(m_{reco} - m_{target})/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massreg_res_vsf --norm --draw_opt 'hist' --xmin -1 --xmax 1. --ymax 0.14 ; display massreg/massreg_res_vsf.pdf
+
+python var1D.py  --f1 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h1 hdreg_higgs_qq --l1 'H #rightarrow qq' --f2 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h2 hdreg_higgs_cc --l2 'H #rightarrow cc' --f3 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h3 hdreg_higgs_bb --l3 'H #rightarrow bb'  --ty '# events' --tx '(m_{reco} - m_{target})/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massreg_res_vsf --norm --draw_opt 'hist' --xmin -1 --xmax 1. --ymax 0.14 ; display massreg/massreg_res_vsf.pdf
+
+python var1D.py  --f1 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h1 hdsd_higgs_qq --l1 'H #rightarrow qq' --f2 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h2 hdsd_higgs_cc --l2 'H #rightarrow cc' --f3 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h3 hdsd_higgs_bb --l3 'H #rightarrow bb'  --ty '# events' --tx '(m_{SD} - m_{target})/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/masssd_res_vsf --norm --draw_opt 'hist' --xmin -1 --xmax 1. --ymax 0.14 ; display massreg/masssd_res_vsf.pdf
+
+
+python var1D.py  --f1 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h1 hdsd_higgs_cc --l1 'H #rightarrow cc (SD)' --f2 massreg/plots_massreg/massRegak15_2020025_20epochs_dilution10.root --h2 hdreg_higgs_cc --l2 'H #rightarrow cc (Reg)' --ty '# events' --tx '(m_{reco} - m_{target})/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/mass_res_higgscc --norm --draw_opt 'hist' --xmin -1 --xmax 1. --ymax 0.14 ; display massreg/mass_res_higgscc.pdf
+
+
+
+TODO:
+
+plot for proper Higgs mass just massreg vs msd
+
+
+python resolution.py plots_massreg/test_regression_gpu_mse_dil4.root test
+
+
+
+python resolution.py plots_massreg/test_regression_gpu_mae_dil4.root mae_target
+python resolution.py plots_massreg/test_regression_gpu_mse_dil4.root mse_target
+
+python resolution.py plots_massreg/test_regression_gpu_partonmass_mae_dil4.root mae_parton
+python resolution.py plots_massreg/test_regression_gpu_partonmass_mse_dil4.root mse_parton
+
+python resolution.py plots_massreg/test_regression_gpu_higgsonly_mae_dil4.root mae_higgs
+python resolution.py plots_massreg/test_regression_gpu_higgsonly_mse_dil4.root mse_higgs
+
+
+
+python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_all_loghub_dil4.log epochs_all_loghub
+python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_higgsonly_loghub_dil4.log epochs_higgsonly_loghub
+python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_all_logmse_dil4.log epochs_all_logmse
+python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_higgsonly_logmse_dil4.log epochs_higgsonly_logmse
+#python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_all_hub_dil4.log epochs_all_hub
+#python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_higgsonly_hub_dil4.log epochs_higgsonly_hub
+
+python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_all_mse_dil4.log epochs_all_mse_hub
+python parseLog.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/logs/massreg_higgsonly_mse_dil4.log epochs_higgsonly_mse
+
+
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_loghub_dil4/massreg_all_loghub_dil4.root plots_massreg/massreg_all_loghub_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_higgsonly_loghub_dil4/massreg_higgsonly_loghub_dil4.root plots_massreg/massreg_higgsonly_loghub_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_mse_dil4/massreg_all_mse_dil4.root plots_massreg/massreg_all_mse_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_higgsonly_mse_dil4/massreg_higgsonly_mse_dil4.root plots_massreg/massreg_higgsonly_mse_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_logmse_dil4/massreg_all_logmse_dil4.root plots_massreg/massreg_all_logmse_dil4.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_higgsonly_logmse_dil4/massreg_higgsonly_logmse_dil4.root plots_massreg/massreg_higgsonly_logmse_dil4.root
+
+
+t
+
+python resolution.py plots_massreg/massreg_all_loghub_dil4.root loghub_all
+python resolution.py plots_massreg/massreg_higgsonly_loghub_dil4.root loghub_higgs
+
+python resolution.py plots_massreg/massreg_all_mse_dil4.root mse_all
+python resolution.py plots_massreg/massreg_higgsonly_mse_dil4.root mse_higgs
+
+python resolution.py plots_massreg/massreg_all_logmse_dil4.root logmse_all
+python resolution.py plots_massreg/massreg_higgsonly_logmse_dil4.root logmse_higgs
+
+
+python var1D.py  --f1 massreg/plots_massreg/massreg_higgsonly_mse_dil4.root --h1 hdsd_higgs_cc --l1 'H #rightarrow cc (SD)' --f2 massreg/plots_massreg/massreg_higgsonly_mse_dil4.root --h2 hdreg_higgs_cc --l2 'H #rightarrow cc (Reg)' --ty '# events' --tx 'm_{reco}/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_hcc_mse_higgsonly --norm --draw_opt 'hist' --xmin 0 --xmax 2. --ymax 0.1 --rebin 2; display massreg/massres_hcc_mse_higgsonly.pdf
+python var1D.py  --f1 massreg/plots_massreg/massreg_all_mse_dil4.root --h1 hdsd_higgs_cc --l1 'H #rightarrow cc (SD)' --f2 massreg/plots_massreg/massreg_all_mse_dil4.root --h2 hdreg_higgs_cc --l2 'H #rightarrow cc (Reg)' --ty '# events' --tx 'm_{reco}/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_hcc_mse_all --norm --draw_opt 'hist' --xmin 0 --xmax 2. --ymax 0.1 --rebin 2; display massreg/massres_hcc_mse_all.pdf
+python var1D.py  --f1 massreg/plots_massreg/massreg_all_mse_dil4.root --h1 hdsd_qcd --l1 'QCD (SD)' --f2 massreg/plots_massreg/massreg_all_mse_dil4.root --h2 hdreg_qcd --l2 'QCD (Reg)' --ty '# events' --tx 'm_{reco}/m_{target}' --cap_in ' QCD sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_qcd_mse_all --norm --draw_opt 'hist' --xmin 0 --xmax 2. --ymax 0.1 --rebin 2; display massreg/massres_qcd_mse_all.pdf
+
+python var1D.py  --f1 massreg/plots_massreg/massreg_higgsonly_logmse_dil4.root --h1 hdsd_higgs_cc --l1 'H #rightarrow cc (SD)' --f2 massreg/plots_massreg/massreg_higgsonly_logmse_dil4.root --h2 hdreg_higgs_cc --l2 'H #rightarrow cc (Reg)' --ty '# events' --tx 'm_{reco}/m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_hcc_logmse_higgsonly --norm --draw_opt 'hist' --xmin 0 --xmax 2. --ymax 0.1 --rebin 2; display massreg/massres_hcc_logmse_higgsonly.pdf
+
+python var1D.py  --f1 massreg/plots_massreg/massreg_all_mse_dil4.root --h1 hdsd_higgs --l1 'Soft-Drop' --f2 massreg/plots_massreg/massreg_all_mse_dil4.root --h2 hdreg_higgs --l2 'Regression' --ty '# events' --tx 'm_{reco} / m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_h_mse_all --norm --draw_opt 'hist' --xmin 0 --xmax 2. --rebin 2; display massreg/massres_h_mse_all.pdf
+python var1D.py  --f1 massreg/plots_massreg/massreg_all_mse_dil4.root --h1 hdsd_qcd --l1 'Soft-Drop' --f2 massreg/plots_massreg/massreg_all_mse_dil4.root --h2 hdreg_qcd --l2 'Regression' --ty '# events' --tx 'm_{reco} / m_{target}' --cap_in ' QCD sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_qcd_mse_all --norm --draw_opt 'hist' --xmin 0 --xmax 2. --rebin 2; display massreg/massres_qcd_mse_all.pdf
+
+
+python var1D.py  --f1 massreg/plots_massreg/massreg_all_mse_dil4.root --h1 hdsd_higgs_qq --l1 'Soft-Drop (qq)' --f2 massreg/plots_massreg/massreg_all_mse_dil4.root  --h2 hdsd_higgs_cc --l2 'Soft-Drop (cc)'  --f3 massreg/plots_massreg/massreg_all_mse_dil4.root  --h3 hdsd_higgs_bb --l3 'Soft-Drop (bb)' --ty '# events' --tx 'm_{reco} / m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_hflav_mse_all --norm --draw_opt 'hist' --xmin 0 --xmax 2. --rebin 2; display massreg/massres_hflav_mse_all.pdf
+python var1D.py  --f1 massreg/plots_massreg/massreg_all_mse_dil4.root --h1 hdsd_qcd_qq --l1 'Soft-Drop (qq)' --f2 massreg/plots_massreg/massreg_all_mse_dil4.root  --h2 hdsd_qcd_cc --l2 'Soft-Drop (cc)'  --f3 massreg/plots_massreg/massreg_all_mse_dil4.root  --h3 hdsd_qcd_bb --l3 'Soft-Drop (bb)' --ty '# events' --tx 'm_{reco} / m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_qcdflav_mse_all --norm --draw_opt 'hist' --xmin 0 --xmax 2. --rebin 2; display massreg/massres_qcdflav_mse_all.pdf
+
+python var1D.py  --f1 massreg/plots_massreg/massreg_all_mse_dil4.root --h1 hdreg_higgs_qq --l1 'Regression (qq)' --f2 massreg/plots_massreg/massreg_all_mse_dil4.root  --h2 hdreg_higgs_cc --l2 'Regression (cc)'  --f3 massreg/plots_massreg/massreg_all_mse_dil4.root  --h3 hdreg_higgs_bb --l3 'Regression (bb)' --ty '# events' --tx 'm_{reco} / m_{target}' --cap_in ' Higgs sample  ,  , ' --cap_upr 'CMS Run-II Simulation' --out massreg/massres_hflav_mse_all --norm --draw_opt 'hist' --xmin 0 --xmax 2. --rebin 2; display massreg/massres_hflav_mse_all.pdf
+
+
+
+python resolution.py plots_massreg/massreg_all_loghub_dil4.root loghub_all
+
+
+
+
+
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_mse_dil4/massreg_all_mse_dil4_all.root plots_massreg/massreg_all_mse_dil4_all.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_higgsonly_mse_dil4/massreg_higgsonly_mse_dil4_higgsonly.root plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_higgsonly_mse_dil4/massreg_higgsonly_mse_dil4_qcd.root plots_massreg/massreg_higgsonly_mse_dil4_qcd.root
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil4/massreg_all_hub_dil4_all.root plots_massreg/massreg_all_hub_dil4_all.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_higgsonly_hub_dil4/massreg_higgsonly_hub_dil4_higgsonly.root plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_higgsonly_hub_dil4/massreg_higgsonly_hub_dil4_qcd.root plots_massreg/massreg_higgsonly_hub_dil4_qcd.root
+
+
+
+
+python resolution.py plots_massreg/massreg_all_hub_dil4_all.root massreg_all_hub_dil4_all
+
+python resolution.py plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root massreg_ll_hub_dil4_higgsonly
+
+
+
+python resolution.py plots_massreg/massreg_all_mse_dil4_all.root massreg_all_mse_dil4_all
+
+
+
+python resolution.py plots_massreg/massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut_ccsel1.root massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut_ccsel1.root
+
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_cc_sel0_hub_dil4/massreg_all_cc_sel0_hub_dil4_all.root plots_massreg/massreg_all_cc_sel0_hub_dil4_all.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_cc_sel1_hub_dil4/massreg_all_cc_sel0_hub_dil4_all.root plots_massreg/massreg_all_cc_sel1_hub_dil4_all.root
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil4_nomasscut/massreg_all_hub_dil4_train_all_nomasscut.root plots_massreg/massreg_all_hub_dil4_train_all_nomasscut.root
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil4_nomasscut/massreg_all_hub_dil4_nomasscut_train_all_nomasscut.root plots_massreg/massreg_all_hub_dil4_train_all_nomasscut.root
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil4_nomasscut_ptcut_ccsel1/massreg_all_hub_dil4_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root plots_massreg/massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut_ccsel1.root
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil4_nomasscut_ptcut/massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut.root plots_massreg/massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil4_nomasscut_ptcut_ccsel1/massreg_all_hub_dil4_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root plots_massreg/massreg_all_hub_dil4_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root
+
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root plots_massreg/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil1_nomasscut_ccsel1/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root plots_massreg/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil1_nomasscut_bbccsel1/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_bbccsel1.root plots_massreg/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_bbccsel1.root
+python massReg.py /afs/cern.ch/work/s/selvaggi/private/HCC/NNTools/training/model_output/massreg_all_hub_dil1_nomasscut_ptcut_bbccsel1/massreg_all_hub_dil1_nomasscut_ptcut_bbccsel1_train_all_nomasscut_ptcut_bbccsel1.root plots_massreg/massreg_all_hub_dil1_nomasscut_ptcut_bbccsel1_train_all_nomasscut_ptcut_bbccsel1.root
+
+
+python resolution.py plots_massreg/massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut.root massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut.root
+python resolution.py plots_massreg/massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut_ccsel1.root massreg_all_hub_dil4_nomasscut_ptcut_train_all_nomasscut_ptcut_ccsel1.root
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root massreg_all_hub_dil1_nomasscut_ptcut_train_all_nomasscut_ptcut_ccsel1.root
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root massreg_all_hub_dil1_nomasscut_ptcut_train_all_nomasscut_ptcut_ccsel1.root
+
+
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root test
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_ptcut_ccsel1_train_all_nomasscut_ptcut_ccsel1.root test
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root test
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_ptcut_bbccsel1_train_all_nomasscut_ptcut_bbccsel1.root test
+
+## best one 
+
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root generic_regression
+
+## second best one
+python resolution.py plots_massreg/massreg_all_hub_dil1_nomasscut_ccsel1_train_all_nomasscut_ccsel1.root cc_regression
+
