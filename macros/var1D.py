@@ -19,6 +19,10 @@ python macros/var1D.py  --f2 /eos/user/s/selvaggi/DelphesNose/pp_zd_m15_HFNose/h
 
 import argparse
 
+import ROOT, sys, re, os
+from ROOT import TFile, TH1F, TCanvas, TLegend, THStack, gROOT
+
+
 #_____________________________________________________________________________
 def options():
     parser = argparse.ArgumentParser(description="generic 1D plotter")
@@ -43,6 +47,14 @@ def options():
     parser.add_argument('--h4', dest='h4', type=str, help='name of TH1 in file1', default='')
     parser.add_argument('--l4', dest='l4', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
 
+    # file5 ...
+    parser.add_argument('--f5', dest='f5', type=str, help='second file containing TH1', default='')
+    parser.add_argument('--h5', dest='h5', type=str, help='name of TH1 in file1', default='')
+    parser.add_argument('--l5', dest='l5', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
+
+
+
+
     # general parameters
     parser.add_argument('--tx', dest='tx', type=str, help='title of x-axis', default='p_{T}')    
     parser.add_argument('--ty', dest='ty', type=str, help='title of y-axis', default='normalized event rate')    
@@ -62,7 +74,12 @@ def options():
     parser.add_argument('--normnbin', dest='normnbin', help='normalize histograms to 1', type=int, default=-1)
 
     parser.add_argument('--log', dest='log', default=False, help='plot y-axis in log scale', action='store_true')
+    parser.add_argument('--gridx', dest='gridx', default=False, help='plot x-axis grid', action='store_true')
+    parser.add_argument('--gridy', dest='gridy', default=False, help='plot y-axis grid', action='store_true')
+    parser.add_argument('--png', dest='png', default=False, help='print png', action='store_true')
     parser.add_argument('--rebin', dest='rebin', type=int, help='rebin by amount specified', default=1)
+
+    parser.add_argument('--overflow', dest='overflow', default=False, help='add overflow and underflow bins', action='store_true')
 
     parser.add_argument('--draw_opt', dest='draw_opt', type=str, help='specifiy root draw option', default='hist')
 
@@ -70,17 +87,44 @@ def options():
 
     return parser.parse_args()
 
+#____________________________________________________________________________________________________
+def addOverflow(h):
+
+   # This function paint the histogram h with an extra bin for overflows
+
+   name  = h.GetName()
+   title = h.GetTitle()
+   nx    = h.GetNbinsX()+2
+   bw = h.GetBinWidth(nx)
+   x1 = h.GetBinLowEdge(1)-bw
+   x2 = h.GetBinLowEdge(nx)
+
+   # Book a temporary histogram having ab extra bin for overflows
+   htmp = ROOT.TH1F(name, title, nx, x1, x2)
+
+   # Fill the new histogram including the extra bin for overflows
+   for i in range(0,nx):
+      htmp.Fill(htmp.GetBinCenter(i+1), h.GetBinContent(i))
+
+
+   # Restore the number of entries
+   htmp.SetEntries(h.GetEntries());
+   return htmp
+
+
 #______________________________________________________________________________
 def main():
     
     ops = options()
 
-    import ROOT, sys, re, os
-    from ROOT import TFile, TH1F, TCanvas, TLegend, THStack
+    gROOT.SetBatch(True)
+
         
     # define canvas
     canvas = ROOT.TCanvas("", "", 600, 600) 
     canvas.SetLogy(ops.log)
+    canvas.SetGridx(ops.gridx)
+    canvas.SetGridy(ops.gridy)
     canvas.SetTicks(1,1)
     canvas.SetLeftMargin(0.16)
     canvas.SetRightMargin(0.08)
@@ -93,6 +137,10 @@ def main():
     
     # get and initialize histos
     h1 = hfile1.Get(ops.h1)
+
+    if ops.overflow:
+       h1 = addOverflow(h1)
+
     h1.SetTitle(ops.l1)
     h1.GetXaxis().SetTitle(ops.tx)
     h1.GetYaxis().SetTitle(ops.ty)
@@ -141,6 +189,9 @@ def main():
     if ops.f2:
         hfile2 = ROOT.TFile(ops.f2)
         h2 = hfile2.Get(ops.h2)
+        if ops.overflow:
+           h2 = addOverflow(h2)
+
         h2.SetTitle(ops.l2)
         h2.SetLineWidth(4)
         h2.SetLineColor(ROOT.kPink+10)
@@ -173,6 +224,8 @@ def main():
     if ops.f3:
         hfile3 = ROOT.TFile(ops.f3)
         h3 = hfile3.Get(ops.h3)
+        if ops.overflow:
+           h3 = addOverflow(h3)
         h3.SetTitle(ops.l3)
         h3.SetLineWidth(4)
         h3.SetLineColor(ROOT.kBlue)
@@ -203,11 +256,12 @@ def main():
         legsize += legsize
 
 
-
     max4 = 0
     if ops.f4:
         hfile4 = ROOT.TFile(ops.f4)
         h4 = hfile4.Get(ops.h4)
+        if ops.overflow:
+           h4 = addOverflow(h4)
         h4.SetTitle(ops.l4)
         h4.SetLineWidth(4)
         h4.SetLineColor(ROOT.kGreen+2)
@@ -237,6 +291,43 @@ def main():
         legsize += legsize
 
 
+    max5 = 0
+    if ops.f5:
+        hfile5 = ROOT.TFile(ops.f5)
+        h5 = hfile5.Get(ops.h5)
+        if ops.overflow:
+           h5 = addOverflow(h5)
+        h5.SetTitle(ops.l5)
+        h5.SetLineWidth(4)
+        h5.SetLineColor(ROOT.kRed+1)
+        #h5.SetLineStyle(9)
+        h5.SetLineStyle(1)
+        if ops.norm:
+           h5.Scale(1./h5.Integral(0, h5.GetNbinsX()+1))
+
+        if ops.norm1stbin:
+            scale = h5.GetBinContent(1)
+            h5.Scale(1/scale)
+
+        if ops.normlastbin:
+            scale = h5.GetBinContent(h5.GetNbinsX())
+            h5.Scale(1/scale)
+
+        if ops.normnbin >=0:
+            scale = h5.GetBinContent(ops.normnbin)        
+            h5.Scale(1/scale)
+
+        h5.Rebin(ops.rebin)
+        max5 =  h5.GetMaximum() 
+        maxi = max(maxi, max5)
+        ylegsize += legsize
+
+        h5.Draw(draw_option)
+        legsize += legsize
+
+
+
+
     print 'pass'
 
     h1.Draw(draw_option)
@@ -246,7 +337,7 @@ def main():
     
     if not ops.ymax:
        if not ops.log:
-           h1.SetMaximum(maxi*1.7)
+           h1.SetMaximum(maxi*1.4)
        else:
            h1.SetMaximum(maxi*100.)
     else:
@@ -267,6 +358,9 @@ def main():
         leg.AddEntry(h3,ops.l3,"l")
     if ops.f4:
         leg.AddEntry(h4,ops.l4,"l")
+    if ops.f5:
+        leg.AddEntry(h5,ops.l5,"l")
+
 
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
@@ -293,7 +387,7 @@ def main():
     Text.SetTextAlign(22)
     Text.SetNDC(ROOT.kTRUE) 
     #Text.SetTextSize(0.04) 
-    Text.DrawLatex(0.30, 0.83, text)
+    Text.DrawLatex(0.32, 0.83, text)
     
     Text.SetTextAlign(22)
     Text.SetNDC(ROOT.kTRUE) 
@@ -301,7 +395,7 @@ def main():
     if 'ell' in text:
        text = text.replace('#','\\')
     Text.SetTextSize(0.03) 
-    Text.DrawLatex(0.30, 0.76, text)
+    Text.DrawLatex(0.32, 0.76, text)
 
     print rt[0]
     print rt[1]
@@ -314,7 +408,7 @@ def main():
         if 'ell' in text:
            text = text.replace('#','\\')
         Text.SetTextSize(0.03) 
-        Text.DrawLatex(0.30, 0.70, text)
+        Text.DrawLatex(0.32, 0.70, text)
 
     if len(rt)>3:
         text = '#it{#bf{' + rt[3] +'}}'
@@ -322,6 +416,7 @@ def main():
            text = text.replace('#','\\')
         Text.SetTextSize(0.03) 
         Text.DrawLatex(0.50, 0.60, text)
+
 
     canvas.RedrawAxis()
     canvas.Update()
@@ -338,9 +433,11 @@ def main():
     if not os.path.exists(pdir):
        os.makedirs(pdir)
     
-    #canvas.Print('{}.png'.format(filename), 'png')
+    if ops.png:
+        canvas.Print('{}.png'.format(filename), 'png')
     #canvas.Print('{}.eps'.format(filename), 'eps')
-    canvas.Print('{}.pdf'.format(filename), 'pdf')
+    else:
+        canvas.Print('{}.pdf'.format(filename), 'pdf')
 
 #______________________________________________________________________________
 if __name__ == '__main__': 
