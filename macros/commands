@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 python var1D.py --f1 nose_puidtiming_bdt_v2.root  --h1 signal_jets_time_moments_0 --l1 'VBF jets' --f2 nose_puidtiming_bdt_v2.root --h2 backg_jets_time_moments_0 --l2 'PU jets'  --ty 'event fraction' --tx '#mu = #Sigma E_{i} t_{i} / E_{jet} (ns)' --cap_in ' HF-Nose , (timing) ,' --cap_upr 'HF-Nose PhaseII Simulation' --out plots/weighted_mean_time --draw_opt 'hist' --xmin 0. --xmax 14. --norm  --rebin 1 ;
 
 python var1D.py --f1 nose_puidtiming_bdt_v2.root  --h1 signal_jets_cumlong_fracs_2 --l1 'VBF jets' --f2 nose_puidtiming_bdt_v2.root --h2 backg_jets_cumlong_fracs_2 --l2 'PU jets'  --ty 'event fraction' --tx 'E_{[1-2]}/E_{jet}' --cap_in ' HF-Nose , (longitudinal) ,' --cap_upr 'HF-Nose PhaseII Simulation' --out plots/long12 --draw_opt 'hist' --xmin 0. --xmax 0.6 --norm  --rebin 1 ;
@@ -8,7 +10,7 @@ python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 
 python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_all_200.0_100000.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_all_200.0_100000.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_all_200.0_100000.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_all_200.0_100000.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_all --draw_opt 'hist' --norm  --rebin 50 ;
 
 
-python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_cc_200.0_100000.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_cc_200.0_100000.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_cc_200.0_100000.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_cc_200.0_100000.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc --draw_opt 'hist' --norm  --rebin 50 ;
+python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_higgs_bb_200.0_100000.0 --l1 'Higgs (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_higgs_cc_200.0_100000.0 --l2 'Higgs (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_higgsonly.root --h3 hdreg_higgs_cc_200.0_100000.0 --l3 'Higgs (MSE/higgs)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_higgsonly.root --h4 hdreg_higgs_cc_200.0_100000.0 --l4 'Higgs (HUB/higgs)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) jet ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc --draw_opt 'hist' --norm  --rebin 50 ;
 
 
 python var1D.py --f1 ../files/plots_massreg/massreg_all_mse_dil4_all.root  --h1 hdreg_qcd_cc_200.0_100000.0 --l1 'QCD (MSE/all)' --f2 ../files/plots_massreg/massreg_all_hub_dil4_all.root --h2 hdreg_qcd_cc_200.0_100000.0 --l2 'QCD (HUB/all)'   --f3 ../files/plots_massreg/massreg_higgsonly_mse_dil4_qcd.root --h3 hdreg_qcd_cc_200.0_100000.0 --l3 'QCD (MSE/qcd)'   --f4 ../files/plots_massreg/massreg_higgsonly_hub_dil4_qcd.root --h4 hdreg_qcd_cc_200.0_100000.0 --l4 'QCD (HUB/qcd)'  --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in ' c (cc) flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc --draw_opt 'hist' --norm  --rebin 50 ;
@@ -130,3 +132,105 @@ python var1D.py --f1  ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all
 python var1D.py --f1  ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h1 hreg_qcd_all_pt500.0_1000.0_m0.0_1000.0 --l1 'QCD (reg)' --f2 ../files/massreg_all_hub_dil1_nomasscut_bbccsel1_train_all_nomasscut_ccsel1.root --h2 hsd_qcd_all_pt500.0_1000.0_m0.0_1000.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' all flavours  ,      500 < p_{T} < 1000 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_all_500.0_1000.0_gen --draw_opt 'hist' --norm  --rebin 50 --log ;
 
 
+
+
+
+
+############################################################################
+### Huilin version with weaver for AK15
+############################################################################
+
+
+#FILE="../files/massreg_weaver_huilin_median.root"
+FILE="../files/massreg_weaver_ak15_v3.root"
+#FILE="../files/massreg_weaver_ak8.root"
+#FILE="../files/massreg_weaver_huilin_ak8_large.root"
+
+
+
+# H->cc low pT comparison with SD
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_cc_pt200.0_250.0_m100.0_150.0 --l1 'H -> cc (reg.)' --f2 ${FILE} --h2 hdsd_higgs_cc_pt200.0_250.0_m100.0_150.0 --l2 'H -> cc (SD)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in '     200 < p_{T} < 250 GeV,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc_200.0_250.0_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+## H->bb low pT comparison with SD
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_bb_pt200.0_250.0_m100.0_150.0 --l1 'H -> bb (reg.)' --f2 ${FILE} --h2 hdsd_higgs_bb_pt250.0_300.0_m100.0_150.0 --l2 'H -> bb (SD)' --ty 'event fraction' --tx 'm_{reg} / m_{target}' --cap_in '     200 < p_{T} < 250 GeV,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_bb_250.0_300.0_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+# H->cc all pT comparison with SD
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_cc_pt200.0_100000.0_m100.0_150.0 --l1 'H -> cc (reg.)' --f2 ${FILE} --h2 hdsd_higgs_cc_pt200.0_100000.0_m100.0_150.0 --l2 'H -> cc (SD)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in '        200 < p_{T} < 500 GeV,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_cc_200.0_100000.0_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+# QCD all pT comparison with SD
+python var1D.py --f1 ${FILE}  --h1 hdreg_qcd_cc_pt200.0_100000.0_m100.0_150.0 --l1 'QCD (reg.)' --f2 ${FILE} --h2 hdsd_qcd_cc_pt200.0_100000.0_m100.0_150.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in '        200 < p_{T} < 500 GeV,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_cc_200.0_100000.0_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+# H->bb all pT comparison with SD
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l1 'H -> bb (reg.)' --f2 ${FILE} --h2 hdsd_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l2 'H -> bb (SD)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in '        200 < p_{T} < 500 GeV,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_bb_200.0_100000.0_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+# flavour comparison all pTs
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_qq_pt200.0_100000.0_m100.0_150.0 --l1 'Higgs (qq)' --f2 ${FILE} --h2 hdreg_higgs_cc_pt200.0_100000.0_m100.0_150.0 --l2 'Higgs (cc)'  --f3 ${FILE} --h3 hdreg_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l3 'Higgs (bb)' --ty 'event fraction' --tx 'm_{regression} / m_{target}' --cap_in '      200 < p_{T} < 500 GeV ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_flavours --draw_opt 'hist' --norm  --rebin 100 ;
+python var1D.py --f1 ${FILE}  --h1 hdreg_qcd_qq_pt200.0_100000.0_m100.0_150.0 --l1 'QCD (qq)' --f2 ${FILE} --h2 hdreg_qcd_cc_pt200.0_100000.0_m100.0_150.0 --l2 'QCD (cc)'  --f3 ${FILE} --h3 hdreg_qcd_bb_pt200.0_100000.0_m100.0_150.0 --l3 'QCD (bb)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' all flavours  ,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_flavours --draw_opt 'hist' --norm  --rebin 100 ;
+
+# pt comp H->cc
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_cc_pt200.0_250.0_m100.0_150.0 --l1 '200 < p_{T} < 250' --f2 ${FILE}  --h2 hdreg_higgs_cc_pt250.0_300.0_m100.0_150.0 --l2 '250 < p_{T} < 300'   --f3 ${FILE}  --h3 hdreg_higgs_cc_pt300.0_400.0_m100.0_150.0 --l3 '300 < p_{T} < 400'  --f4 ${FILE}  --h4 hdreg_higgs_cc_pt400.0_500.0_m100.0_150.0 --l4 '400 < p_{T} < 500' --ty 'event fraction' --tx 'M_{reg} / M_{target}' --cap_in '    mass regression,  H #rightarrow cc ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_cc_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow;
+
+python var1D.py --f1 ${FILE}  --h1 hdsd_higgs_cc_pt200.0_250.0_m100.0_150.0 --l1 '200 < p_{T} < 250' --f2 ${FILE}  --h2 hdsd_higgs_cc_pt250.0_300.0_m100.0_150.0 --l2 '250 < p_{T} < 300'   --f3 ${FILE}  --h3 hdsd_higgs_cc_pt300.0_400.0_m100.0_150.0 --l3 '300 < p_{T} < 400'  --f4 ${FILE}  --h4 hdsd_higgs_cc_pt400.0_500.0_m100.0_150.0 --l4 '400 < p_{T} < 500' --ty 'event fraction' --tx 'M_{SD} / M_{target}' --cap_in '    soft drop mass, H #rightarrow cc  ,' --cap_upr 'CMS Simulation' --out plots/masssd_higgs_cc_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow ;
+
+python var1D.py --f1 ${FILE}  --h1 hdreg_qcd_cc_pt200.0_250.0_m100.0_150.0 --l1 '200 < p_{T} < 250' --f2 ${FILE}  --h2 hdreg_qcd_cc_pt250.0_300.0_m100.0_150.0 --l2 '250 < p_{T} < 300'   --f3 ${FILE}  --h3 hdreg_qcd_cc_pt300.0_400.0_m100.0_150.0 --l3 '300 < p_{T} < 400'  --f4 ${FILE}  --h4 hdreg_qcd_cc_pt400.0_500.0_m100.0_150.0 --l4 '400 < p_{T} < 500' --ty 'event fraction' --tx 'M_{reg} / M_{target}' --cap_in '    mass regression,   QCD (c/cc),' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_cc_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow;
+
+python var1D.py --f1 ${FILE}  --h1 hdsd_qcd_cc_pt200.0_250.0_m100.0_150.0 --l1 '200 < p_{T} < 250' --f2 ${FILE}  --h2 hdsd_qcd_cc_pt250.0_300.0_m100.0_150.0 --l2 '250 < p_{T} < 300'   --f3 ${FILE}  --h3 hdsd_qcd_cc_pt300.0_400.0_m100.0_150.0 --l3 '300 < p_{T} < 400'  --f4 ${FILE}  --h4 hdsd_qcd_cc_pt400.0_500.0_m100.0_150.0 --l4 '400 < p_{T} < 500' --ty 'event fraction' --tx 'M_{SD} / M_{target}' --cap_in '    soft drop mass,   QCD (c/cc)  ,' --cap_upr 'CMS Simulation' --out plots/masssd_qcd_cc_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow ;
+
+
+
+## pt comp H->bb
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l1 'Higgs (bb) [200,500]' --f2 ${FILE}  --h2 hdreg_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l2 'Higgs (bb) [200,500]' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in ' p_{T} comparison,  ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_bb_pt_gen --draw_opt 'hist' --norm  --rebin 100 ;
+
+
+# sculpting QCD
+python var1D.py --f1  ${FILE} --h1 hreg_qcd_all_pt200.0_100000.0_m0.0_1000.0 --l1 'QCD (reg)' --f2 ${FILE} --h2 hsd_qcd_all_pt200.0_100000.0_m0.0_1000.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' all flavours  ,      200 < p_{T} < 300 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_all_200.0_10000.0_gen --draw_opt 'hist' --norm  --rebin 50 --log ;
+
+
+## resolution and efficiency plots vs pT
+filename=$(basename -- "${FILE}")
+extension="${filename##*.}"
+filename="${filename%.*}"
+echo ${filename}
+
+python massreg/resolution.py ${FILE} ${filename}
+
+
+
+############################################################################
+### Huilin version with weaver for AK8 (H->bb)
+############################################################################
+
+
+FILE="../files/massreg_weaver_huilin_ak8_large.root"
+# flavour comparison all pTs
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_qq_pt200.0_100000.0_m100.0_150.0 --l1 'Higgs (qq)' --f2 ${FILE} --h2 hdreg_higgs_cc_pt200.0_100000.0_m100.0_150.0 --l2 'Higgs (cc)'  --f3 ${FILE} --h3 hdreg_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l3 'Higgs (bb)' --ty 'event fraction' --tx 'm_{regression} / m_{target}' --cap_in '  AK8 jets,       p_{T} > 200 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_flavours --draw_opt 'hist' --norm  --rebin 100 --png ;
+python var1D.py --f1 ${FILE}  --h1 hdreg_qcd_qq_pt200.0_100000.0_m100.0_150.0 --l1 'QCD (q/qq)' --f2 ${FILE} --h2 hdreg_qcd_cc_pt200.0_100000.0_m100.0_150.0 --l2 'QCD (c/cc)'  --f3 ${FILE} --h3 hdreg_qcd_bb_pt200.0_100000.0_m100.0_150.0 --l3 'QCD (b/bb)' --ty 'event fraction' --tx 'm_{regression} / m_{target}' --cap_in '  AK8 jets,       p_{T} > 200 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_flavours --draw_opt 'hist' --norm  --rebin 100 --png ;
+
+# H->bb all pT comparison with SD
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l1 'H -> bb (reg.)' --f2 ${FILE} --h2 hdsd_higgs_bb_pt200.0_100000.0_m100.0_150.0 --l2 'H -> bb (SD)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in '  AK8 jets,       p_{T} > 200 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_higgs_bb_200.0_100000.0_gen --draw_opt 'hist' --norm  --rebin 100 --png ;
+
+# QCD all pT comparison with SD
+python var1D.py --f1 ${FILE}  --h1 hdreg_qcd_bb_pt200.0_100000.0_m100.0_150.0 --l1 'QCD (reg.)' --f2 ${FILE} --h2 hdsd_qcd_bb_pt200.0_100000.0_m100.0_150.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco} / m_{target}' --cap_in '  AK8 jets,       p_{T} > 200 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_comp_qcd_bb_200.0_100000.0_gen --draw_opt 'hist' --norm  --rebin 100 --png ;
+
+# pt comp H->bb
+python var1D.py --f1 ${FILE}  --h1 hdreg_higgs_bb_pt250.0_300.0_m100.0_150.0 --l1 '250 < p_{T} < 300'   --f2 ${FILE}  --h2 hdreg_higgs_bb_pt300.0_400.0_m100.0_150.0 --l2 '300 < p_{T} < 400'  --f3 ${FILE}  --h3 hdreg_higgs_bb_pt400.0_500.0_m100.0_150.0 --l3 '400 < p_{T} < 500'  --f4 ${FILE}  --h4 hdreg_higgs_bb_pt500.0_750.0_m100.0_150.0 --l4 '500 < p_{T} < 750' --ty 'event fraction' --tx 'M_{reg} / M_{target}' --cap_in '  AK8 jets,    H #rightarrow bb,   mass regression' --cap_upr 'CMS Simulation' --out plots/massreg_higgs_bb_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow --png ;
+
+python var1D.py --f1 ${FILE}  --h1 hdsd_higgs_bb_pt250.0_300.0_m100.0_150.0 --l1 '250 < p_{T} < 300'   --f2 ${FILE}  --h2 hdsd_higgs_bb_pt300.0_400.0_m100.0_150.0 --l2 '300 < p_{T} < 400'  --f3 ${FILE}  --h3 hdsd_higgs_bb_pt400.0_500.0_m100.0_150.0 --l3 '400 < p_{T} < 500'  --f4 ${FILE}  --h4 hdsd_higgs_bb_pt500.0_750.0_m100.0_150.0 --l4 '500 < p_{T} < 750' --ty 'event fraction' --tx 'M_{SD} / M_{target}' --cap_in '  AK8 jets,    H #rightarrow bb,   soft drop mass' --cap_upr 'CMS Simulation' --out plots/masssd_higgs_bb_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow --png ;
+
+python var1D.py --f1 ${FILE}  --h1 hdreg_qcd_bb_pt250.0_300.0_m100.0_150.0 --l1 '250 < p_{T} < 300'   --f2 ${FILE}  --h2 hdreg_qcd_bb_pt300.0_400.0_m100.0_150.0 --l2 '300 < p_{T} < 400'  --f3 ${FILE}  --h3 hdreg_qcd_bb_pt400.0_500.0_m100.0_150.0 --l3 '400 < p_{T} < 500'  --f4 ${FILE}  --h4 hdreg_qcd_bb_pt500.0_750.0_m100.0_150.0 --l4 '500 < p_{T} < 750' --ty 'event fraction' --tx 'M_{reg} / M_{target}' --cap_in '  AK8 jets,     QCD (b/bb),   mass regression' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_bb_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow --png ;
+
+python var1D.py --f1 ${FILE}  --h1 hdsd_qcd_bb_pt250.0_300.0_m100.0_150.0 --l1 '250 < p_{T} < 300'   --f2 ${FILE}  --h2 hdsd_qcd_bb_pt300.0_400.0_m100.0_150.0 --l2 '300 < p_{T} < 400'  --f3 ${FILE}  --h3 hdsd_qcd_bb_pt400.0_500.0_m100.0_150.0 --l3 '400 < p_{T} < 500'  --f4 ${FILE}  --h4 hdsd_qcd_bb_pt500.0_750.0_m100.0_150.0 --l4 '500 < p_{T} < 750' --ty 'event fraction' --tx 'M_{SD} / M_{target}' --cap_in '  AK8 jets,     QCD (b/bb),   soft drop mass' --cap_upr 'CMS Simulation' --out plots/masssd_qcd_bb_pt_gen --draw_opt 'hist' --norm  --rebin 100 --overflow --png ;
+
+
+# sculpting QCD
+python var1D.py --f1  ${FILE} --h1 hreg_qcd_all_pt200.0_100000.0_m0.0_1000.0 --l1 'QCD (reg)' --f2 ${FILE} --h2 hsd_qcd_all_pt200.0_100000.0_m0.0_1000.0 --l2 'QCD (SD)' --ty 'event fraction' --tx 'm_{reco}' --cap_in ' all flavours  ,   p_{T} >  200 GeV ,' --cap_upr 'CMS Simulation' --out plots/massreg_qcd_sculpting_all_200.0_10000.0_gen --draw_opt 'hist' --norm  --rebin 50 --log --png ;
+
+
+## resolution and efficiency plots vs pT
+filename=$(basename -- "${FILE}")
+extension="${filename##*.}"
+filename="${filename%.*}"
+echo ${filename}
+
+python massreg/resolution.py ${FILE} ${filename}

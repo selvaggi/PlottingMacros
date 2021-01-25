@@ -2,7 +2,7 @@ import ROOT, sys
 from ROOT import TFile, TH1F, TGraphErrors, TMultiGraph, TLegend, TF1,gROOT
 import math
 
-c = ROOT.TCanvas("", "", 600, 600) 
+c = ROOT.TCanvas("", "", 600, 600)
 ROOT.gROOT.SetBatch(True)
 
 font = 132
@@ -52,7 +52,7 @@ def myStyle():
     ROOT.gStyle.SetPadLeftMargin(0.125)
     ROOT.gStyle.SetPadTickX(1)
     ROOT.gStyle.SetPadTickY(1)
-    
+
     ROOT.gStyle.SetTextFont(42) #132
     ROOT.gStyle.SetTextSize(0.09)
     ROOT.gStyle.SetLabelFont(42,"xyz")
@@ -60,7 +60,7 @@ def myStyle():
     ROOT.gStyle.SetLabelSize(0.045,"xyz") #0.035
     ROOT.gStyle.SetTitleSize(0.045,"xyz")
     ROOT.gStyle.SetTitleOffset(1.15,"y")
-    
+
     # use bold lines and markers
     ROOT.gStyle.SetMarkerStyle(8)
     ROOT.gStyle.SetHistLineWidth(2)
@@ -71,7 +71,7 @@ def myStyle():
     ROOT.gStyle.SetOptTitle(1)
     ROOT.gStyle.SetOptStat(0) #("m")
     ROOT.gStyle.SetOptFit(0)
-    
+
     #ROOT.gStyle.SetPalette(1,0)
     ROOT.gStyle.cd()
     ROOT.gROOT.ForceStyle()
@@ -79,9 +79,9 @@ def myStyle():
 
 def printResoHisto(histo, f, tag):
    c = ROOT.TCanvas(histo.GetName(), "", 600, 600)
-   ROOT.gPad.SetLeftMargin(0.20) ; 
-   ROOT.gPad.SetRightMargin(0.05) ; 
-   ROOT.gPad.SetBottomMargin(0.20) ; 
+   ROOT.gPad.SetLeftMargin(0.20) ;
+   ROOT.gPad.SetRightMargin(0.05) ;
+   ROOT.gPad.SetBottomMargin(0.20) ;
    ROOT.gStyle.SetOptStat(0000000);
    ROOT.gStyle.SetTextFont(132);
    ROOT.gStyle.SetOptStat(0000000)
@@ -95,12 +95,12 @@ def printResoHisto(histo, f, tag):
    histo.SetMinimum(0.)
    #histo.GetXaxis().SetRangeUser(0., 1.5)
    histo.GetXaxis().SetRangeUser(0., 6.0)
-   
+
    histo.GetYaxis().SetLabelFont(132)
    histo.GetYaxis().SetTitleFont(132)
    histo.GetXaxis().SetLabelFont(132)
    histo.GetXaxis().SetTitleFont(132)
-   
+
    histo.GetXaxis().SetTitleOffset(1.2)
    histo.GetYaxis().SetTitleOffset(1.2)
    histo.GetXaxis().SetLabelOffset(0.02)
@@ -111,18 +111,18 @@ def printResoHisto(histo, f, tag):
    histo.GetYaxis().SetLabelSize(0.06)
    histo.GetXaxis().SetNdivisions(505)
    histo.GetYaxis().SetNdivisions(505)
-   
+
    '''
    ptext = ROOT.TPaveText(0.21,0.55,0.52,.87)
-   
+
    ptext.AddText("{} pile-up".format(pu))
    if pucorr: ptext.AddText("#rho correction")
    else: ptext.AddText("no #rho correction")
    ptext.AddText("anti-k_{{T}}, R = {}".format(r))
    ptext.AddText("p_{{T}} = {} GeV".format(pttext))
-   
+
    ptext.SetTextFont(132)
-   ptext.SetTextSize(0.035) 
+   ptext.SetTextSize(0.035)
    ptext.SetFillColor(0)
    ptext.SetFillStyle(0)
    ptext.SetLineColor(0)
@@ -143,7 +143,7 @@ def printResoHisto(histo, f, tag):
 
    histo.GetXaxis().SetTitle('m^{reco} / m^{gen}')
 
-   name = 'plots_massreg/'+histo.GetName()+'_'+tag
+   name = 'plots/'+histo.GetName()+'_'+tag
    plotname = name+'.png'
    c.Print(plotname)
    #plotname = name+'.pdf'
@@ -176,7 +176,7 @@ def drawMultiGraphResp(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     #for txt in lt:
     Tleft.AddText(lt)
     #Tleft.SetTextFont(132)
-    #Tleft.SetTextSize(0.044) 
+    #Tleft.SetTextSize(0.044)
     Tleft.SetFillColor(0)
     Tleft.SetFillStyle(0)
     Tleft.SetLineColor(0)
@@ -199,17 +199,17 @@ def drawMultiGraphResp(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     # fit stuff
     textsfit = []
     if fs:
-        shift = 0.10       
+        shift = 0.10
         mg.Draw("AP")
         k = 0
-        listofgraphs = mg.GetListOfGraphs() 
+        listofgraphs = mg.GetListOfGraphs()
         for f in fs:
            #if k > 0: break
            strA = '{:.2f}'.format(f.GetParameter(0))
            strB = '{:.2f}'.format(f.GetParameter(1))
            strC = '{:.2f}'.format(f.GetParameter(2))
            strD = '{:.2f}'.format(f.GetParameter(3))
-           
+
            ngr = listofgraphs[k].GetTitle()
            fittext = 'R(p_{T}) = #frac{C + D p_{T}}{A + B p_{T}}, '+ ngr
 
@@ -273,9 +273,9 @@ def drawMultiGraphResp(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     Tleft.Draw()
     Tright.Draw()
 
-    canvas.Print('{}/{}.png'.format(pdir, name), 'png')
+    #canvas.Print('{}/{}.png'.format(pdir, name), 'png')
     canvas.Print('{}/{}.pdf'.format(pdir, name), 'pdf')
-    canvas.Print('{}/{}.eps'.format(pdir, name), 'eps')
+    #canvas.Print('{}/{}.eps'.format(pdir, name), 'eps')
 #-----------------------------------------------------------------------------------------------------
 
 def drawMultiGraphReso(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, bl, fs):
@@ -301,7 +301,7 @@ def drawMultiGraphReso(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     #for txt in lt:
     Tleft.AddText(lt)
     Tleft.SetTextFont(132)
-    #Tleft.SetTextSize(0.044) 
+    #Tleft.SetTextSize(0.044)
     Tleft.SetFillColor(0)
     Tleft.SetFillStyle(0)
     Tleft.SetLineColor(0)
@@ -325,15 +325,15 @@ def drawMultiGraphReso(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     # fit stuff
     textsfit = []
     if fs:
-        shift = 0.12       
+        shift = 0.12
         mg.Draw("AP")
         k = 0
-        listofgraphs = mg.GetListOfGraphs() 
+        listofgraphs = mg.GetListOfGraphs()
         for f in fs:
            strA = '{:.0f}'.format(f.GetParameter(0))
            strB = '{:.0f}'.format(f.GetParameter(1))
            ngr = listofgraphs[k].GetTitle()
- 
+
            fittext = '#frac{#sigma(p_{T})}{p_{T}} = #frac{A%}{#sqrt{p_{T}}} #oplus B%, '+ngr
 
            fittext = fittext.replace('A', strA)
@@ -352,8 +352,8 @@ def drawMultiGraphReso(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
            leg.AddEntry(f,ngr,"l");
            textsfit.append(Tfit)
            k += 1
-   
-   
+
+
     else:
        mg.Draw("ALP")
 
@@ -394,13 +394,13 @@ def drawMultiGraphReso(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     Tleft.Draw()
     Tright.Draw()
 
-    canvas.Print('{}/{}.png'.format(pdir, name), 'png')
+    #canvas.Print('{}/{}.png'.format(pdir, name), 'png')
     canvas.Print('{}/{}.pdf'.format(pdir, name), 'pdf')
-    canvas.Print('{}/{}.eps'.format(pdir, name), 'eps')
+    #canvas.Print('{}/{}.eps'.format(pdir, name), 'eps')
 
 #-----------------------------------------------------------------------------------------------------
 
-def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, bl):
+def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, bl,  form):
 
     #myStyle()
     ROOT.gStyle.SetOptStat(0000000)
@@ -423,7 +423,7 @@ def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, b
     #for txt in lt:
     Tleft.AddText(lt)
     #Tleft.SetTextFont(132)
-    #Tleft.SetTextSize(0.044) 
+    #Tleft.SetTextSize(0.044)
     Tleft.SetFillColor(0)
     Tleft.SetFillStyle(0)
     Tleft.SetLineColor(0)
@@ -441,7 +441,7 @@ def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, b
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetLineColor(0)
-    
+
     mg.Draw("ALP")
 
     '''for t in textsfit:
@@ -479,9 +479,9 @@ def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, b
     Tleft.Draw()
     Tright.Draw()
 
-    canvas.Print('{}/{}.png'.format(pdir, name), 'png')
-    canvas.Print('{}/{}.pdf'.format(pdir, name), 'pdf')
-    canvas.Print('{}/{}.eps'.format(pdir, name), 'eps')
+    #canvas.Print('{}/{}.png'.format(pdir, name), 'png')
+    canvas.Print('{}/{}.{}'.format(pdir, name, form), '{}'.format(form))
+    #canvas.Print('{}/{}.eps'.format(pdir, name), 'eps')
 
 
 #_____________________________________________________________________________
@@ -490,7 +490,7 @@ def getEffSigma( theHist, wmin=0.2, wmax=1.8, step=0.001, epsilon=0.007 ):
 #def getEffSigma( theHist, wmin=0.1, wmax=2.8, step=0.0002, epsilon=0.005 ):
   point = wmin
   weight = 0.
-  points = [] #vector<pair<double,double> > 
+  points = [] #vector<pair<double,double> >
   thesum = theHist.Integral(0, theHist.GetNbinsX()+1)
   for i in range(theHist.GetNbinsX()):
     weight += theHist.GetBinContent(i)
@@ -501,23 +501,23 @@ def getEffSigma( theHist, wmin=0.2, wmax=1.8, step=0.001, epsilon=0.007 ):
 
   width = wmax-wmin
   for i in range(len(points)):
-    
+
     #print i, points[i][0], points[i][1]
     for j in range(i,len(points)):
-      
+
       wy = points[j][1] - points[i][1]
       if abs(wy-0.683) < epsilon:
       #if abs(wy-0.5) < epsilon:
-        
+
         wx = points[j][0] - points[i][0]
         if wx < width:
           low = points[i][0]
           high = points[j][0]
-          
+
           #print points[j][0], points[i][0], wy, wx
-          
+
           width=wx
-  
+
   return 0.5*(high-low)
 
 
@@ -527,9 +527,9 @@ def getEfficiency( theHist, cutmin=0.2, cutmax=1.8):
   thesum = theHist.Integral()
 
   thefficientsum=0
-  for i in range(theHist.GetNbinsX()):    
+  for i in range(theHist.GetNbinsX()):
     x = theHist.GetBinCenter(i)
-    
+
     if x > cutmin and x < cutmax:
         thefficientsum += theHist.GetBinContent(i)
 
@@ -559,6 +559,7 @@ ptbins = [(200.,300.), (300.,500.), (500.,1000.)]
 
 ptbins = [(200.,250.), (250.,300.), (300., 400.), (400., 500.)]
 
+ptbins = [ (300., 400.), (400., 500.), (500., 750.), (750., 1000.)]
 
 mus = dict()
 sigs = dict()
@@ -631,7 +632,7 @@ for ptbin in ptbins:
                label += '  (regression)'
 
             labels[name] = label
-            
+
             procs[label]=process
             algos[label]=m
 
@@ -652,13 +653,13 @@ for name in names:
         effs[name]   = -1.
         effs2[name]  = -1.
 
-        if histo.Integral() > 0: 
+        if histo.Integral() > 0:
           histo.Scale(1/histo.Integral())
           histo.Rebin(rebin)
 
 
           ## extract place where maximum is
-          x0 = histo.GetXaxis().GetBinCenter(histo.GetMaximumBin())      
+          x0 = histo.GetXaxis().GetBinCenter(histo.GetMaximumBin())
           d = histo.GetRMS()
 
           # now perform gaussian fit in [x_max_sigm, x_max_sigp]
@@ -667,7 +668,7 @@ for name in names:
           s = 1.0
           histo.Fit(fname, 'Q', '', x0 - s*d, x0 + s*d)
           #print histo, f
-          printResoHisto(histo, f, tag)
+          #printResoHisto(histo, f, tag)
 
           mus[name]  = (f.GetParameter(1), f.GetParError(1))
           sigs[name] = (f.GetParameter(2) / f.GetParameter(1), f.GetParError(2) / f.GetParameter(1))
@@ -682,10 +683,10 @@ for name in names:
 
           stddev = sigs[name][0]
           mpv = mus[name][0]
-          
+
           #mpv = f.GetParameter(1)
           #stddev = d
-          
+
           effs[name] = getEfficiency(histo, cutmin=0.4, cutmax=999.)
           effs2[name] = getEfficiency(histo, cutmin=mpv-2.*stddev, cutmax=mpv+2.*stddev)
 
@@ -712,11 +713,11 @@ for name in names:
 
         cmin=125.*(mpv - 2*stddev)
         cmax=125.*(mpv + 2*stddev)
-        
+
         print name, histname2, name_higgs
         print mpv*125, stddev*125
         print cmin, cmax
-        
+
         effs[name] = getEfficiency(hist2, cutmin=50. ,cutmax=9999999.)
         effs2[name] = getEfficiency(hist2, cutmin=cmin ,cutmax=cmax)
 
@@ -757,7 +758,7 @@ for name in names:
 
 
 
-### print( performance table 
+### print( performance table
 
 print( "")
 print( "{0:>20s} {1:>11s} {2:>13s} {3:>25s} {4:>25s}".format("process (mass)", "mu", "sigma/mu", "eff. (mH > 50 GeV)", "eff. ( mH +/- 2 sigma)"))
@@ -772,7 +773,7 @@ eps_bkg_reg = 1.
 
 n=0
 for name in names:
-    
+
     if 'qcd_qq' in name: continue
     if n%2==0:
         #print name
@@ -780,15 +781,15 @@ for name in names:
     print( "{0:22} {1:10.2f} {2:10.2f} {3:20.2f} {4:20.2f}".format(labels[name], mus[name][0], sigs[name][0], effs[name], effs2[name]))
 
     '''
-    effSD = 
-    
-    if 
-    
+    effSD =
+
+    if
+
     if n%2==0:
-        print 'Gain: {:.2f}'.format(), 
+        print 'Gain: {:.2f}'.format(),
 
     '''
-    
+
     n+=1
 
 mg_resp_pt = ROOT.TMultiGraph()
@@ -809,7 +810,7 @@ for kname in names:
     if '(l)' in name or 'qq' in name: continue
     if i > 7: break
 
-    
+
 
     reso_pt = ROOT.TGraph()
     reso_pt.SetLineColor(colors[i])
@@ -853,7 +854,7 @@ for kname in names:
          #print algos[name]
          #print procs[name]
          #print bin_sig
-         
+
          key='hd{}_{}_{}'.format(algos[name],procs[name],bin_sig)
          print name, ptval, sigs[key][0]
 
@@ -869,9 +870,9 @@ for kname in names:
     mg_resp_pt.Add(resp_pt)
     mg_eff_pt.Add(eff_pt)
 
-drawMultiGraph(mg_reso_pt, 'reso_pt_{}'.format(tag), '', '', 'plots_massreg', 0., 1000., 0., 0.5, False, False, False)
-drawMultiGraph(mg_resp_pt, 'resp_pt_{}'.format(tag), '', '', 'plots_massreg', 0., 1000., 0.80, 1.30, False, False, False)
-drawMultiGraph(mg_eff_pt, 'eff_pt_{}'.format(tag), '', '', 'plots_massreg', 0., 1000., 0.0, 1.50, False, False, False)
+drawMultiGraph(mg_reso_pt, 'reso_pt_{}'.format(tag), '', '', 'plots', 0., 2000., 0., 0.5, False, False, False, 'png')
+drawMultiGraph(mg_resp_pt, 'resp_pt_{}'.format(tag), '', '', 'plots', 0., 2000., 0.80, 1.30, False, False, False, 'png')
+drawMultiGraph(mg_eff_pt, 'eff_pt_{}'.format(tag), '', '', 'plots', 0., 2000., 0.0, 1.50, False, False, False, 'png')
 
 
 mg_gain_pt = ROOT.TMultiGraph()
@@ -907,7 +908,7 @@ for fs in ['bb', 'cc', 'qq']:
          key_sig_reg = 'hdreg_higgs_{}_{}_m100.0_150.0'.format(fs,ptbin)
          key_bkg_reg = 'hdreg_qcd_{}_{}_m100.0_150.0'.format(fs,ptbin)
 
-         gain = math.sqrt(effs2[key_bkg_sd] / effs2[key_bkg_reg]) * effs2[key_sig_reg] / effs2[key_sig_sd] 
+         gain = math.sqrt(effs2[key_bkg_sd] / effs2[key_bkg_reg]) * effs2[key_sig_reg] / effs2[key_sig_sd]
 
          print 'gain: ', fs,ptval,gain
          gain_pt.SetPoint(point,ptval,gain)
@@ -915,7 +916,8 @@ for fs in ['bb', 'cc', 'qq']:
 
     mg_gain_pt.Add(gain_pt)
 
-drawMultiGraph(mg_gain_pt, 'gain_pt_{}'.format(tag), '', '', 'plots_massreg', 0., 500., 0.9, 1.7, False, False, False)
+#drawMultiGraph(mg_gain_pt, 'gain_pt_{}'.format(tag), '', '', 'plots', 0., 500., 0.9, 1.7, False, False, False)
+drawMultiGraph(mg_gain_pt, 'gain_pt_{}'.format(tag), '', '', 'plots', 0., 2000., 0.8, 1.5, False, False, False, 'png')
 
 
 #____  VS PT_________________________
@@ -947,7 +949,7 @@ for det in ['HF', 'Nose']:
     resp_pt.SetFillColor(0)
     resp_pt.SetLineWidth(4)
     resp_pt.SetMarkerColor(colors[i])
-    
+
     title = det
     if det == 'Nose':
         title = 'HF-Nose'
@@ -958,18 +960,18 @@ for det in ['HF', 'Nose']:
 
     i += 1
     point = 0
-  
+
     for pt in ptbins:
       key = (pt,r)
       if mus[name]  > 0. and sigs[name] > 0.:
-         
+
          #print key, mus[name], sigs[name]
-         
+
          #if key == ((20,50),0.4) and not pucorr: continue
          pterr = 0.5*(pt[1]-pt[0])
-        
+
          pt = 0.5*(pt[0]+pt[1])
-          
+
          reso_pt.SetPoint(point,pt,sigs[name][0])
          reso_pt.SetPointError(point,0.,sigs[name][1])
          #reso_pt.SetPointError(point,pterr,sigs[key][1])
@@ -986,14 +988,14 @@ for det in ['HF', 'Nose']:
     fresp.SetParameter(1,1)
     fresp.SetParameter(2,0)
     fresp.SetParameter(3,1)
-    
+
     if r == 0.1 and typlot == 'resp' and not pucorr:
         fresp.SetParLimits(0,-6.1,-5.9)
         fresp.SetParLimits(1,0.99,1.01)
         fresp.SetParLimits(2,-8.1,-7.9)
         fresp.SetParLimits(3,1.19,1.21)
 
-    
+
     resp_pt.Fit(fresp, '', '', 5.0, 5000.0)
 
     freso = ROOT.TF1('reso', 'sqrt([1]^2/x + [2]^2)',0.0, 10000.0)
@@ -1016,11 +1018,11 @@ name_reso = '{}_reso_pt_{}pu'.format(label,pu)
 name_resp = '{}_resp_pt_{}pu'.format(label,pu)
 
 if typlot == 'resp':
-   if not pucorr: 
+   if not pucorr:
        pname = 'resp_nocorr'
-       print pname   
+       print pname
        lt = 'no #rho correction'
-       drawMultiGraphResp(mg_resp_pt, pname, lt, rt, 'plots_nose', 20, 5000., 0., 6., False, False, False, fresps)   
+       drawMultiGraphResp(mg_resp_pt, pname, lt, rt, 'plots_nose', 20, 5000., 0., 6., False, False, False, fresps)
    else:
        pname = 'resp_corr'
        lt = '#rho correction'
@@ -1028,7 +1030,7 @@ if typlot == 'resp':
 else:
    if not pucorr:
        pname = 'reso_nocorr'
-       print pname   
+       print pname
        lt = ''
        drawMultiGraphReso(mg_reso_pt, pname, lt, rt, 'plots_nose', 0., 150., 0., 50., False, False, False, fresos)
    else:
@@ -1038,5 +1040,5 @@ else:
 
 #if pucorr: drawMultiGraphResp(mg_resp_pt, name_resp, lt, rt, 'plots_nose', 20, 5000., 0., 2., True, False, False, fresps)
 #else : drawMultiGraphResp(mg_resp_pt, name_resp, lt, rt, 'plots_nose', 20, 5000., 0., 6., True, False, False, fresps)
-#drawMultiGraphReso(mg_rtyplot == 'resp'eso_pt, name_reso, lt, rt, 'plots_nose', 0., 500., 0., 40., False, False, False, fresos)   
+#drawMultiGraphReso(mg_rtyplot == 'resp'eso_pt, name_reso, lt, rt, 'plots_nose', 0., 500., 0., 40., False, False, False, fresos)
 '''

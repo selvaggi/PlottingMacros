@@ -5,7 +5,7 @@ python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet20
 python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_hc_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_hc_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_hc_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >'   --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , HCAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_hcal --draw_opt 'hist'
 python macros/var1D.py  --f1 ../../../ntuple-tools/FccDiJet200GeV/out/FccDiJet200GeV.root --h1 rp_ec_ak4 --l1 'prompt jet'  --f2 ../../../ntuple-tools/Fcc200PU/out/Fcc200PU.root --h2 rp_ec_ak4 --l2 'pile-up jet (200PU)'  --f3 ../../../ntuple-tools/Fcc1000PU/out/Fcc1000PU.root --h3 rp_ec_ak4 --l3 'pile-up jet (1000PU)' --ty '< d E / d R >'  --tx 'R' --cap_in 'p_{T}^{jet} > 100 \;GeV , , ECAL' --cap_upr 'FCC-hh Simulation' --out plots/pu_lat_ecal --draw_opt 'hist'
 
-python macros/var1D.py  --f1 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h1 cumRecoMet04 --l1 '|#eta| < 4'  --f2 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h2 cumRecoMet05 --l2 '|#eta| < 5'  --f3 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h3 cumRecoMet06 --l3 '|#eta| < 6' --ty 'P(E_{T}^{miss} > E_{T}^{miss}(min))' --tx 'E_{T}^{miss}(min)' --cap_in 'p_{T}^{jet} > 50 \;GeV, , QCD events' --cap_upr 'FCC-hh Simulation' --out plots/Recomet_reso --draw_opt 'hist' --log --norm1stbin --ymin 1e-5 --xmin 0 --xmax 150; 
+python macros/var1D.py  --f1 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h1 cumRecoMet04 --l1 '|#eta| < 4'  --f2 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h2 cumRecoMet05 --l2 '|#eta| < 5'  --f3 /eos/experiment/fcc/hh/generation/DelphesStandalone/QCD_Pt50/histosQCD/out/histosQCD.root --h3 cumRecoMet06 --l3 '|#eta| < 6' --ty 'P(E_{T}^{miss} > E_{T}^{miss}(min))' --tx 'E_{T}^{miss}(min)' --cap_in 'p_{T}^{jet} > 50 \;GeV, , QCD events' --cap_upr 'FCC-hh Simulation' --out plots/Recomet_reso --draw_opt 'hist' --log --norm1stbin --ymin 1e-5 --xmin 0 --xmax 150;
 
 python macros/var1D.py  --f1 /afs/cern.ch/work/s/selvaggi/private/Analysis/FCC/FlatTreeAnalyzer/BatchOutput/hmumu_fcc/sel_H_125/root_H_125/histos.root --h1 H(125)_sel0_mh --l1 'FCC'  --f2 /afs/cern.ch/work/s/selvaggi/private/Analysis/FCC/FlatTreeAnalyzer/BatchOutput/hmumu_helhc/sel_H_125/root_H_125/histos.root --h2 H(125)_sel0_mh --l2 'CMS' --tx 'm_{#mu #mu}' --xmin 122.5 --xmax 127.5 --norm --cap_in 'p_{T}^{\ell} > 3 \;GeV, , gg #to H #to 4#ell' --cap_upr 'FCC-hh Simulation' --out plots/mmumu
 
@@ -35,38 +35,38 @@ def options():
     # file2 ...
     parser.add_argument('--f2', dest='f2', type=str, help='second file containing TH1', default='')
     parser.add_argument('--h2', dest='h2', type=str, help='name of TH1 in file1', default='')
-    parser.add_argument('--l2', dest='l2', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
+    parser.add_argument('--l2', dest='l2', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')
 
     # file3 ...
     parser.add_argument('--f3', dest='f3', type=str, help='second file containing TH1', default='')
     parser.add_argument('--h3', dest='h3', type=str, help='name of TH1 in file1', default='')
-    parser.add_argument('--l3', dest='l3', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
+    parser.add_argument('--l3', dest='l3', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')
 
     # file4 ...
     parser.add_argument('--f4', dest='f4', type=str, help='second file containing TH1', default='')
     parser.add_argument('--h4', dest='h4', type=str, help='name of TH1 in file1', default='')
-    parser.add_argument('--l4', dest='l4', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
+    parser.add_argument('--l4', dest='l4', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')
 
     # file5 ...
     parser.add_argument('--f5', dest='f5', type=str, help='second file containing TH1', default='')
     parser.add_argument('--h5', dest='h5', type=str, help='name of TH1 in file1', default='')
-    parser.add_argument('--l5', dest='l5', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')    
+    parser.add_argument('--l5', dest='l5', type=str, help='label for TH1 in file1 to be appeared in the legend', default='')
 
 
 
 
     # general parameters
-    parser.add_argument('--tx', dest='tx', type=str, help='title of x-axis', default='p_{T}')    
-    parser.add_argument('--ty', dest='ty', type=str, help='title of y-axis', default='normalized event rate')    
-    parser.add_argument('--cap_upr', dest='cap_upr', type=str, help='caption to appear in top right corner', default='FCC-hh Simulation (Delphes)')    
-    
-    # if commas are present text is distributed among various lines
-    parser.add_argument('--cap_in', dest='cap_in', type=str, help='caption to appear in the canvas (separation with comma for multiple captions)', default='#sqrt{s} = 100 TeV, L = 30 ab^{-1}')    
+    parser.add_argument('--tx', dest='tx', type=str, help='title of x-axis', default='p_{T}')
+    parser.add_argument('--ty', dest='ty', type=str, help='title of y-axis', default='normalized event rate')
+    parser.add_argument('--cap_upr', dest='cap_upr', type=str, help='caption to appear in top right corner', default='FCC-hh Simulation (Delphes)')
 
-    parser.add_argument('--xmin', dest='xmin', type=float, help='minimum x value')    
-    parser.add_argument('--xmax', dest='xmax', type=float, help='maximum x value')    
-    parser.add_argument('--ymin', dest='ymin', type=float, help='minimum y value')    
-    parser.add_argument('--ymax', dest='ymax', type=float, help='maximum y value')    
+    # if commas are present text is distributed among various lines
+    parser.add_argument('--cap_in', dest='cap_in', type=str, help='caption to appear in the canvas (separation with comma for multiple captions)', default='#sqrt{s} = 100 TeV, L = 30 ab^{-1}')
+
+    parser.add_argument('--xmin', dest='xmin', type=float, help='minimum x value')
+    parser.add_argument('--xmax', dest='xmax', type=float, help='maximum x value')
+    parser.add_argument('--ymin', dest='ymin', type=float, help='minimum y value')
+    parser.add_argument('--ymax', dest='ymax', type=float, help='maximum y value')
 
     parser.add_argument('--norm', dest='norm', default=False, help='normalize histograms to 1', action='store_true')
     parser.add_argument('--norm1stbin', dest='norm1stbin', default=False, help='normalize histograms to 1', action='store_true')
@@ -114,14 +114,14 @@ def addOverflow(h):
 
 #______________________________________________________________________________
 def main():
-    
+
     ops = options()
 
     gROOT.SetBatch(True)
 
-        
+
     # define canvas
-    canvas = ROOT.TCanvas("", "", 600, 600) 
+    canvas = ROOT.TCanvas("", "", 600, 600)
     canvas.SetLogy(ops.log)
     canvas.SetGridx(ops.gridx)
     canvas.SetGridy(ops.gridy)
@@ -130,14 +130,14 @@ def main():
     canvas.SetRightMargin(0.08)
     canvas.SetBottomMargin(0.12)
     ROOT.gROOT.SetBatch(True)
-    ROOT.gStyle.SetOptStat(0000000)    
+    ROOT.gStyle.SetOptStat(0000000)
 
     # get files
     hfile1 = ROOT.TFile(ops.f1)
-    
+
     # get and initialize histos
     h1 = hfile1.Get(ops.h1)
-
+    h1.Rebin(ops.rebin)
     if ops.overflow:
        h1 = addOverflow(h1)
 
@@ -163,18 +163,17 @@ def main():
         scale = h1.GetBinContent(1)
         h1.Scale(1/scale)
     if ops.normlastbin:
-        scale = h1.GetBinContent(h1.GetNbinsX())        
+        scale = h1.GetBinContent(h1.GetNbinsX())
         h1.Scale(1/scale)
     if ops.normnbin >=0:
-        scale = h1.GetBinContent(ops.normnbin)        
+        scale = h1.GetBinContent(ops.normnbin)
         h1.Scale(1/scale)
 
 
-    h1.Rebin(ops.rebin)
 
     # set histogram boundaries
     maxi = h1.GetMaximum()
-        
+
     draw_option = ops.draw_opt
 
     h1.Draw(draw_option)
@@ -189,6 +188,8 @@ def main():
     if ops.f2:
         hfile2 = ROOT.TFile(ops.f2)
         h2 = hfile2.Get(ops.h2)
+        h2.Rebin(ops.rebin)
+
         if ops.overflow:
            h2 = addOverflow(h2)
 
@@ -208,12 +209,11 @@ def main():
             h2.Scale(1/scale)
 
         if ops.normnbin >=0:
-            scale = h2.GetBinContent(ops.normnbin)        
+            scale = h2.GetBinContent(ops.normnbin)
             h2.Scale(1/scale)
 
 
-        h2.Rebin(ops.rebin)
-        max2 =  h2.GetMaximum() 
+        max2 =  h2.GetMaximum()
         maxi = max(maxi, max2)
         ylegsize += legsize
 
@@ -224,6 +224,8 @@ def main():
     if ops.f3:
         hfile3 = ROOT.TFile(ops.f3)
         h3 = hfile3.Get(ops.h3)
+        h3.Rebin(ops.rebin)
+
         if ops.overflow:
            h3 = addOverflow(h3)
         h3.SetTitle(ops.l3)
@@ -243,12 +245,11 @@ def main():
             h3.Scale(1/scale)
 
         if ops.normnbin >=0:
-            scale = h3.GetBinContent(ops.normnbin)        
+            scale = h3.GetBinContent(ops.normnbin)
             h3.Scale(1/scale)
 
 
-        h3.Rebin(ops.rebin)
-        max3 =  h3.GetMaximum() 
+        max3 =  h3.GetMaximum()
         maxi = max(maxi, max3)
         ylegsize += legsize
 
@@ -260,6 +261,7 @@ def main():
     if ops.f4:
         hfile4 = ROOT.TFile(ops.f4)
         h4 = hfile4.Get(ops.h4)
+        h4.Rebin(ops.rebin)
         if ops.overflow:
            h4 = addOverflow(h4)
         h4.SetTitle(ops.l4)
@@ -279,11 +281,10 @@ def main():
             h4.Scale(1/scale)
 
         if ops.normnbin >=0:
-            scale = h4.GetBinContent(ops.normnbin)        
+            scale = h4.GetBinContent(ops.normnbin)
             h4.Scale(1/scale)
 
-        h4.Rebin(ops.rebin)
-        max4 =  h4.GetMaximum() 
+        max4 =  h4.GetMaximum()
         maxi = max(maxi, max4)
         ylegsize += legsize
 
@@ -314,11 +315,11 @@ def main():
             h5.Scale(1/scale)
 
         if ops.normnbin >=0:
-            scale = h5.GetBinContent(ops.normnbin)        
+            scale = h5.GetBinContent(ops.normnbin)
             h5.Scale(1/scale)
 
         h5.Rebin(ops.rebin)
-        max5 =  h5.GetMaximum() 
+        max5 =  h5.GetMaximum()
         maxi = max(maxi, max5)
         ylegsize += legsize
 
@@ -332,9 +333,9 @@ def main():
 
     h1.Draw(draw_option)
 
-    if ops.xmin is not None and ops.xmax is not None: 
+    if ops.xmin is not None and ops.xmax is not None:
        h1.GetXaxis().SetRangeUser(ops.xmin, ops.xmax)
-    
+
     if not ops.ymax:
        if not ops.log:
            h1.SetMaximum(maxi*1.4)
@@ -342,7 +343,7 @@ def main():
            h1.SetMaximum(maxi*100.)
     else:
        h1.SetMaximum(ops.ymax)
-       
+
     if ops.ymin:
        h1.SetMinimum(ops.ymin)
 
@@ -365,36 +366,36 @@ def main():
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetLineColor(0)
-    leg.Draw() 
+    leg.Draw()
 
     print 'building legend'
 
     # add captions
     Text = ROOT.TLatex()
-    Text.SetNDC() 
+    Text.SetNDC()
     Text.SetTextAlign(31);
-    Text.SetTextSize(0.04) 
+    Text.SetTextSize(0.04)
 
     # start with upright
     text = '#it{' + ops.cap_upr +'}'
-    Text.DrawLatex(0.90, 0.92, text) 
+    Text.DrawLatex(0.90, 0.92, text)
 
     # now text inside
     rt = re.split(",", ops.cap_in)
     text = '#bf{#it{   ' + rt[0] +'}}'
     #text = text.replace('#','\\')
-    
+
     Text.SetTextAlign(22)
-    Text.SetNDC(ROOT.kTRUE) 
-    #Text.SetTextSize(0.04) 
+    Text.SetNDC(ROOT.kTRUE)
+    #Text.SetTextSize(0.04)
     Text.DrawLatex(0.32, 0.83, text)
-    
+
     Text.SetTextAlign(22)
-    Text.SetNDC(ROOT.kTRUE) 
+    Text.SetNDC(ROOT.kTRUE)
     text = '#bf{#it{' + rt[1] +'}}'
     if 'ell' in text:
        text = text.replace('#','\\')
-    Text.SetTextSize(0.03) 
+    Text.SetTextSize(0.03)
     Text.DrawLatex(0.32, 0.76, text)
 
     print rt[0]
@@ -407,14 +408,14 @@ def main():
         text = '#it{#bf{' + rt[2] +'}}'
         if 'ell' in text:
            text = text.replace('#','\\')
-        Text.SetTextSize(0.03) 
+        Text.SetTextSize(0.03)
         Text.DrawLatex(0.32, 0.70, text)
 
     if len(rt)>3:
         text = '#it{#bf{' + rt[3] +'}}'
         if 'ell' in text:
            text = text.replace('#','\\')
-        Text.SetTextSize(0.03) 
+        Text.SetTextSize(0.03)
         Text.DrawLatex(0.50, 0.60, text)
 
 
@@ -429,10 +430,10 @@ def main():
     pdir = os.path.dirname(ops.out)
     name = os.path.basename(ops.out)
     filename = pdir + '/' + name
-    
+
     if not os.path.exists(pdir):
        os.makedirs(pdir)
-    
+
     if ops.png:
         canvas.Print('{}.png'.format(filename), 'png')
     #canvas.Print('{}.eps'.format(filename), 'eps')
@@ -440,5 +441,5 @@ def main():
         canvas.Print('{}.pdf'.format(filename), 'pdf')
 
 #______________________________________________________________________________
-if __name__ == '__main__': 
+if __name__ == '__main__':
     main()
