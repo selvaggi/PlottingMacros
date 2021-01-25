@@ -1,5 +1,6 @@
 import ROOT, sys
 from ROOT import TFile, TH1F, TGraphErrors, TMultiGraph, TLegend, TF1,gROOT
+import math
 
 c = ROOT.TCanvas("", "", 600, 600) 
 ROOT.gROOT.SetBatch(True)
@@ -164,17 +165,17 @@ def drawMultiGraphResp(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     ROOT.gPad.SetBottomMargin(0.20) ;
     ROOT.gStyle.SetOptStat(0000000);
     ROOT.gStyle.SetOptFit(000000)
-    ROOT.gStyle.SetTextFont(132);
+    #ROOT.gStyle.SetTextFont(132);
 
     Tright = ROOT.TLatex(0.23, 0.92, rt)
     Tright.SetNDC(ROOT.kTRUE)
     Tright.SetTextSize(0.044)
-    Tright.SetTextFont(132)
+    #Tright.SetTextFont(132)
 
     Tleft = ROOT.TPaveText(0.23,0.75, 0.50,0.89, 'NDC')
     #for txt in lt:
     Tleft.AddText(lt)
-    Tleft.SetTextFont(132)
+    #Tleft.SetTextFont(132)
     #Tleft.SetTextSize(0.044) 
     Tleft.SetFillColor(0)
     Tleft.SetFillStyle(0)
@@ -190,7 +191,7 @@ def drawMultiGraphResp(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
 
 
     leg = ROOT.TLegend(0.62,0.68,0.92,0.88)
-    leg.SetTextFont(132)
+    #leg.SetTextFont(132)
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetLineColor(0)
@@ -244,8 +245,8 @@ def drawMultiGraphResp(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, log
     mg.GetYaxis().SetTitleFont(132)
     mg.GetYaxis().SetLabelOffset(0.015)
     mg.GetYaxis().CenterTitle()
-    mg.GetYaxis().SetNdivisions(505)
-    mg.GetXaxis().SetNdivisions(505)
+    #mg.GetYaxis().SetNdivisions(505)
+    #mg.GetXaxis().SetNdivisions(505)
     mg.GetYaxis().SetTitleOffset(1.4)
 
     mg.GetXaxis().SetTitleFont(132)
@@ -411,17 +412,17 @@ def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, b
     ROOT.gPad.SetBottomMargin(0.20) ;
     ROOT.gStyle.SetOptStat(0000000);
     ROOT.gStyle.SetOptFit(000000)
-    ROOT.gStyle.SetTextFont(132);
+    #ROOT.gStyle.SetTextFont(132);
 
     Tright = ROOT.TLatex(0.23, 0.92, rt)
     Tright.SetNDC(ROOT.kTRUE)
     Tright.SetTextSize(0.044)
-    Tright.SetTextFont(132)
+    #Tright.SetTextFont(132)
 
     Tleft = ROOT.TPaveText(0.23,0.75, 0.50,0.89, 'NDC')
     #for txt in lt:
     Tleft.AddText(lt)
-    Tleft.SetTextFont(132)
+    #Tleft.SetTextFont(132)
     #Tleft.SetTextSize(0.044) 
     Tleft.SetFillColor(0)
     Tleft.SetFillStyle(0)
@@ -436,7 +437,7 @@ def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, b
     if logy: ROOT.gPad.SetLogy()
 
     leg = ROOT.TLegend(0.62,0.68,0.92,0.88)
-    leg.SetTextFont(132)
+    #leg.SetTextFont(132)
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetLineColor(0)
@@ -447,16 +448,16 @@ def drawMultiGraph(mg, name, lt, rt, pdir, xmin, xmax, ymin, ymax, logx, logy, b
        t.Draw()'''
     leg.Draw('same')
 
-    mg.GetYaxis().SetLabelFont(132)
-    mg.GetYaxis().SetTitleFont(132)
+    #mg.GetYaxis().SetLabelFont(132)
+    #mg.GetYaxis().SetTitleFont(132)
     mg.GetYaxis().SetLabelOffset(0.015)
     mg.GetYaxis().CenterTitle()
-    mg.GetYaxis().SetNdivisions(505)
-    mg.GetXaxis().SetNdivisions(505)
-    mg.GetYaxis().SetTitleOffset(1.4)
+    #mg.GetYaxis().SetNdivisions(505)
+    #mg.GetXaxis().SetNdivisions(505)
+    mg.GetYaxis().SetTitleOffset(1.5)
 
-    mg.GetXaxis().SetTitleFont(132)
-    mg.GetXaxis().SetLabelFont(132)
+    #mg.GetXaxis().SetTitleFont(132)
+    #mg.GetXaxis().SetLabelFont(132)
     mg.GetXaxis().SetLabelOffset(0.02)
     mg.GetXaxis().SetTitleOffset(1.5)
     mg.GetXaxis().SetTitleSize(0.06)
@@ -490,7 +491,7 @@ def getEffSigma( theHist, wmin=0.2, wmax=1.8, step=0.001, epsilon=0.007 ):
   point = wmin
   weight = 0.
   points = [] #vector<pair<double,double> > 
-  thesum = theHist.Integral()
+  thesum = theHist.Integral(0, theHist.GetNbinsX()+1)
   for i in range(theHist.GetNbinsX()):
     weight += theHist.GetBinContent(i)
     if weight > epsilon:
@@ -498,19 +499,23 @@ def getEffSigma( theHist, wmin=0.2, wmax=1.8, step=0.001, epsilon=0.007 ):
   low = wmin
   high = wmax
 
-  #print points
-
-
   width = wmax-wmin
   for i in range(len(points)):
+    
+    #print i, points[i][0], points[i][1]
     for j in range(i,len(points)):
+      
       wy = points[j][1] - points[i][1]
       if abs(wy-0.683) < epsilon:
+      #if abs(wy-0.5) < epsilon:
         
         wx = points[j][0] - points[i][0]
         if wx < width:
           low = points[i][0]
           high = points[j][0]
+          
+          #print points[j][0], points[i][0], wy, wx
+          
           width=wx
   
   return 0.5*(high-low)
@@ -552,6 +557,9 @@ typlot = 'reso'
 ptbins = [(200.,300.), (300.,500.), (500.,1000.)]
 #ptbins = [(200.,300.)]
 
+ptbins = [(200.,250.), (250.,300.), (300., 400.), (400., 500.)]
+
+
 mus = dict()
 sigs = dict()
 
@@ -563,7 +571,9 @@ labels = dict()
 names = []
 masses = ['sd','reg']
 processes = ['higgs_cc', 'higgs_bb', 'qcd_qq', 'qcd_cc', 'qcd_bb']
+processes = ['higgs_bb', 'higgs_cc', 'higgs_qq', 'qcd_bb', 'qcd_cc', 'qcd_qq']
 
+#processes = ['higgs_cc', 'qcd_cc']
 
 
 #processes = ['higgs_qq', 'higgs_cc', 'higgs_bb', 'qcd_qq', 'qcd_cc', 'qcd_bb']
@@ -578,9 +588,7 @@ bin_bg_def ='m0.0_1000.0'
 
 for ptbin in ptbins:
 
-
-    rebin = 100
-
+    rebin = 50
 
     #ptbin='pt200.0_300.0'
     ptb='pt{}_{}'.format(ptbin[0],ptbin[1])
@@ -624,8 +632,8 @@ for ptbin in ptbins:
 
             labels[name] = label
             
-	    procs[label]=process
-	    algos[label]=m
+            procs[label]=process
+            algos[label]=m
 
 for name in names:
         hfile = ROOT.TFile(filename)
@@ -635,6 +643,7 @@ for name in names:
 
         #histo = hist.Clone()
         histo = hist
+        print histname
         histo.SetName(histname)
         fname = 'f{}'.format(histname)
 
@@ -663,18 +672,25 @@ for name in names:
           mus[name]  = (f.GetParameter(1), f.GetParError(1))
           sigs[name] = (f.GetParameter(2) / f.GetParameter(1), f.GetParError(2) / f.GetParameter(1))
 
+          sigma_fit = f.GetParameter(2) / f.GetParameter(1)
+
           if not gauss:
              mus[name]  = (x0, 0.)
-             sigma= getEffSigma(histo , wmin=0.2, wmax=1.8, step=0.001, epsilon=0.007 )
+             sigma= getEffSigma(histo , wmin=0., wmax=2.0, step=0.0002, epsilon=0.001 )
              sigs[name] = (sigma /x0,0.)
-
+             sigma_eff = sigma
 
           stddev = sigs[name][0]
           mpv = mus[name][0]
+          
+          #mpv = f.GetParameter(1)
+          #stddev = d
+          
           effs[name] = getEfficiency(histo, cutmin=0.4, cutmax=999.)
-          effs2[name] = getEfficiency(histo, cutmin=mpv-2*stddev, cutmax=mpv+2*stddev)
+          effs2[name] = getEfficiency(histo, cutmin=mpv-2.*stddev, cutmax=mpv+2.*stddev)
 
-          #print '        ', name, mus[name][0], mus[name][1]
+          if 'hdsd_higgs_cc' in name:
+              print '        ', name, mpv, sigma_fit, sigma_eff, effs2[name]
           #print '        ', name, sigs[name][0], sigs[name][1]
 
 
@@ -682,7 +698,7 @@ for name in names:
     hfile = ROOT.TFile(filename)
     histname = name
 
-    if 'qcd_cc' in name or 'qcd_bb' in name:
+    if 'qcd_cc' in name or 'qcd_bb' in name or 'qcd_qq' in name:
         histname2 = histname.replace('hd','h')
         histname2 = histname2.replace(bin_sig_def,bin_bg_def)
 
@@ -694,23 +710,22 @@ for name in names:
         stddev = sigs[name_higgs][0]
         mpv = mus[name_higgs][0]
 
-	cmin=125.*(mpv - 2*stddev)
-	cmax=125.*(mpv + 2*stddev)
+        cmin=125.*(mpv - 2*stddev)
+        cmax=125.*(mpv + 2*stddev)
         
-	print name, histname2, name_higgs
-	print mpv*125, stddev*125
-	print cmin, cmax
-	
+        print name, histname2, name_higgs
+        print mpv*125, stddev*125
+        print cmin, cmax
+        
         effs[name] = getEfficiency(hist2, cutmin=50. ,cutmax=9999999.)
         effs2[name] = getEfficiency(hist2, cutmin=cmin ,cutmax=cmax)
 
-	print effs2[name]
-        
+        print effs2[name]
 
         '''
-	for algo in ['sd','reg']:
-	    for ptbin in ptbins:
-		ptb='pt{}_{}'.format(ptbin[0],ptbin[1])
+        for algo in ['sd','reg']:
+            for ptbin in ptbins:
+                ptb='pt{}_{}'.format(ptbin[0],ptbin[1])
 
                 if algo in name and ptb in name:
                     thename=''
@@ -741,11 +756,18 @@ for name in names:
 
 
 
+
 ### print( performance table 
 
 print( "")
 print( "{0:>20s} {1:>11s} {2:>13s} {3:>25s} {4:>25s}".format("process (mass)", "mu", "sigma/mu", "eff. (mH > 50 GeV)", "eff. ( mH +/- 2 sigma)"))
 print( "-----------------------------------------------------------------------------------------------------------------------------------------")
+
+eps_sig_sd = 1.
+eps_sig_reg = 1.
+eps_bkg_sd = 1.
+eps_bkg_reg = 1.
+
 
 
 n=0
@@ -753,12 +775,21 @@ for name in names:
     
     if 'qcd_qq' in name: continue
     if n%2==0:
+        #print name
         print( '')
     print( "{0:22} {1:10.2f} {2:10.2f} {3:20.2f} {4:20.2f}".format(labels[name], mus[name][0], sigs[name][0], effs[name], effs2[name]))
+
+    '''
+    effSD = 
+    
+    if 
+    
+    if n%2==0:
+        print 'Gain: {:.2f}'.format(), 
+
+    '''
+    
     n+=1
-
-
-
 
 mg_resp_pt = ROOT.TMultiGraph()
 mg_resp_pt.SetTitle(";p_{T} [GeV]; mass response")
@@ -767,7 +798,7 @@ mg_eff_pt = ROOT.TMultiGraph()
 mg_eff_pt.SetTitle(";p_{T} [GeV]; efficiency (#mu +/- 2#sigma cut)")
 
 mg_reso_pt = ROOT.TMultiGraph()
-mg_reso_pt.SetTitle(";p_{T} [GeV]; mass resolution")
+mg_reso_pt.SetTitle(";p_{T} [GeV]; #sigma_{eff}(m) / m")
 
 
 i=0
@@ -775,8 +806,10 @@ for kname in names:
 
     name = labels[kname]
 
-    if '(l)' in name: continue
+    if '(l)' in name or 'qq' in name: continue
     if i > 7: break
+
+    
 
     reso_pt = ROOT.TGraph()
     reso_pt.SetLineColor(colors[i])
@@ -784,6 +817,7 @@ for kname in names:
     reso_pt.SetFillColor(0)
     reso_pt.SetLineWidth(4)
     reso_pt.SetMarkerSize(0)
+    reso_pt.SetMarkerColor(colors[i])
     reso_pt.SetTitle(name)
 
     resp_pt = ROOT.TGraph()
@@ -792,6 +826,7 @@ for kname in names:
     resp_pt.SetFillColor(0)
     resp_pt.SetLineWidth(4)
     resp_pt.SetMarkerSize(0)
+    resp_pt.SetMarkerColor(colors[i])
     resp_pt.SetTitle(name)
 
     eff_pt = ROOT.TGraph()
@@ -800,6 +835,7 @@ for kname in names:
     eff_pt.SetFillColor(0)
     eff_pt.SetLineWidth(4)
     eff_pt.SetMarkerSize(0)
+    eff_pt.SetMarkerColor(colors[i])
     eff_pt.SetTitle(name)
 
     i += 1
@@ -817,15 +853,15 @@ for kname in names:
          #print algos[name]
          #print procs[name]
          #print bin_sig
-	 
+         
          key='hd{}_{}_{}'.format(algos[name],procs[name],bin_sig)
-         #print name, ptval, sigs[key][0]
+         print name, ptval, sigs[key][0]
 
          reso_pt.SetPoint(point,ptval,sigs[key][0])
          resp_pt.SetPoint(point,ptval,mus[key][0])
          eff_pt.SetPoint(point,ptval,effs2[key])
 
-         print name,ptval,effs2[key]
+         print name,ptval,sigs[key][0], effs2[key]
 
          point+=1
 
@@ -838,9 +874,48 @@ drawMultiGraph(mg_resp_pt, 'resp_pt_{}'.format(tag), '', '', 'plots_massreg', 0.
 drawMultiGraph(mg_eff_pt, 'eff_pt_{}'.format(tag), '', '', 'plots_massreg', 0., 1000., 0.0, 1.50, False, False, False)
 
 
+mg_gain_pt = ROOT.TMultiGraph()
+mg_gain_pt.SetTitle(";p_{T} [GeV]; #frac{significance(reg)}{significance(SD)}")
 
 
+i=0
+for fs in ['bb', 'cc', 'qq']:
 
+    name = 'H #rightarrow {}'.format(fs)
+
+    gain_pt = ROOT.TGraph()
+    gain_pt.SetLineColor(colors[2*i])
+    gain_pt.SetLineStyle(1)
+    gain_pt.SetFillColor(0)
+    gain_pt.SetLineWidth(4)
+    gain_pt.SetMarkerSize(0)
+    gain_pt.SetMarkerColor(colors[2*i])
+    gain_pt.SetTitle(name)
+
+    i += 1
+    point = 0
+
+    for pt in ptbins:
+
+         ptval = 0.5*(float(pt[0])+float(pt[1]))
+         ptbin='pt{}_{}'.format(pt[0],pt[1])
+         bin_sig='{}_m100.0_150.0'.format(ptbin)
+
+
+         key_sig_sd = 'hdsd_higgs_{}_{}_m100.0_150.0'.format(fs,ptbin)
+         key_bkg_sd = 'hdsd_qcd_{}_{}_m100.0_150.0'.format(fs,ptbin)
+         key_sig_reg = 'hdreg_higgs_{}_{}_m100.0_150.0'.format(fs,ptbin)
+         key_bkg_reg = 'hdreg_qcd_{}_{}_m100.0_150.0'.format(fs,ptbin)
+
+         gain = math.sqrt(effs2[key_bkg_sd] / effs2[key_bkg_reg]) * effs2[key_sig_reg] / effs2[key_sig_sd] 
+
+         print 'gain: ', fs,ptval,gain
+         gain_pt.SetPoint(point,ptval,gain)
+         point+=1
+
+    mg_gain_pt.Add(gain_pt)
+
+drawMultiGraph(mg_gain_pt, 'gain_pt_{}'.format(tag), '', '', 'plots_massreg', 0., 500., 0.9, 1.7, False, False, False)
 
 
 #____  VS PT_________________________
