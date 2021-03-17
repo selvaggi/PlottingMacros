@@ -9,9 +9,9 @@ except:
 #________________________________________________________________
 
 xmin = 3.
-xmax = 50.
+xmax = 150.
 ymin = 0.
-ymax = 20.
+ymax = 100.
 
 # actual plotting
 c = TCanvas("c","c",600,600)
