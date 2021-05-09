@@ -559,6 +559,7 @@ ptbins = [(200.,300.), (300.,500.), (500.,1000.)]
 
 ptbins = [(200.,250.), (250.,300.), (300., 400.), (400., 500.)]
 
+#ptbins = [ (300., 400.), (400., 500.), (500., 750.), (750., 1000.)]
 ptbins = [ (300., 400.), (400., 500.), (500., 750.), (750., 1000.)]
 
 mus = dict()
@@ -880,7 +881,8 @@ mg_gain_pt.SetTitle(";p_{T} [GeV]; #frac{significance(reg)}{significance(SD)}")
 
 
 i=0
-for fs in ['bb', 'cc', 'qq']:
+#for fs in ['bb', 'cc', 'qq']:
+for fs in ['bb', 'cc']:
 
     name = 'H #rightarrow {}'.format(fs)
 
@@ -908,9 +910,10 @@ for fs in ['bb', 'cc', 'qq']:
          key_sig_reg = 'hdreg_higgs_{}_{}_m100.0_150.0'.format(fs,ptbin)
          key_bkg_reg = 'hdreg_qcd_{}_{}_m100.0_150.0'.format(fs,ptbin)
 
+         print fs, ptval, effs2[key_bkg_reg] , effs2[key_sig_sd], point
          gain = math.sqrt(effs2[key_bkg_sd] / effs2[key_bkg_reg]) * effs2[key_sig_reg] / effs2[key_sig_sd]
 
-         print 'gain: ', fs,ptval,gain
+         #print 'gain: ', fs, ptval, gain
          gain_pt.SetPoint(point,ptval,gain)
          point+=1
 
