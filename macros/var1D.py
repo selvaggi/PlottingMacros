@@ -152,8 +152,8 @@ def main():
     h1.GetYaxis().SetTitleSize(0.045)
     h1.SetLineWidth(4)
     #h1.SetLineColor(ROOT.kBlack)
-    h1.SetLineColor(ROOT.kOrange+1)
-    h1.SetLineStyle(1)
+    h1.SetLineColor(ROOT.kRed+1)
+    h1.SetLineStyle(2)
     h1.SetTitle('')
 
     if ops.norm:
@@ -180,7 +180,7 @@ def main():
 
     draw_option = 'same '+draw_option
 
-    legsize = 0.05
+    legsize = 0.10
     ylegsize = legsize
 
     # if option 2 is defined
@@ -195,7 +195,7 @@ def main():
 
         h2.SetTitle(ops.l2)
         h2.SetLineWidth(4)
-        h2.SetLineColor(ROOT.kPink+10)
+        h2.SetLineColor(ROOT.kGreen+2)
         h2.SetLineStyle(1)
         if ops.norm:
            h2.Scale(1./h2.Integral(0, h2.GetNbinsX()+1))
@@ -351,7 +351,7 @@ def main():
 
 
     # build legend
-    leg = TLegend(0.65,0.86-legsize,0.90,0.86)
+    leg = TLegend(0.50,0.86-legsize,0.90,0.86)
     leg.AddEntry(h1,ops.l1,"l")
     if ops.f2:
         leg.AddEntry(h2,ops.l2,"l")
