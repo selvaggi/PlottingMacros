@@ -22,6 +22,43 @@ import argparse
 import ROOT, sys, re, os
 from ROOT import TFile, TH1F, TCanvas, TLegend, THStack, gROOT
 
+'''
+colours = [
+    ROOT.kRed+1,
+    ROOT.kGreen+2,
+    ROOT.kBlue+1,
+    ROOT.kOrange+1,
+    ROOT.kPink+1,
+]
+
+
+styles = [
+    2,
+    1,
+    1,
+    1,
+    1
+]
+'''
+
+colours = [
+    ROOT.kRed-3,
+    ROOT.kRed+1,
+    ROOT.kRed+3,
+    ROOT.kRed+5,
+    ROOT.kRed+5,
+]
+
+
+styles = [
+    1,
+    1,
+    1,
+    1,
+    1
+]
+
+
 
 #_____________________________________________________________________________
 def options():
@@ -72,6 +109,8 @@ def options():
     parser.add_argument('--norm1stbin', dest='norm1stbin', default=False, help='normalize histograms to 1', action='store_true')
     parser.add_argument('--normlastbin', dest='normlastbin', default=False, help='normalize histograms to 1', action='store_true')
     parser.add_argument('--normnbin', dest='normnbin', help='normalize histograms to 1', type=int, default=-1)
+    parser.add_argument('--normrange', dest='normrange', help='normalize histograms to 1 using defined range xmin, xmax',  action='store_true')
+    parser.add_argument('--legsmall', dest='legsmall', help='small leg size (for many entries)',  action='store_true')
 
     parser.add_argument('--log', dest='log', default=False, help='plot y-axis in log scale', action='store_true')
     parser.add_argument('--gridx', dest='gridx', default=False, help='plot x-axis grid', action='store_true')
@@ -152,8 +191,8 @@ def main():
     h1.GetYaxis().SetTitleSize(0.045)
     h1.SetLineWidth(4)
     #h1.SetLineColor(ROOT.kBlack)
-    h1.SetLineColor(ROOT.kRed+1)
-    h1.SetLineStyle(2)
+    h1.SetLineColor(colours[0])
+    h1.SetLineStyle(styles[0])
     h1.SetTitle('')
 
     if ops.norm:
@@ -169,6 +208,12 @@ def main():
         scale = h1.GetBinContent(ops.normnbin)
         h1.Scale(1/scale)
 
+    if ops.normrange:
+        axis = h1.GetXaxis()
+        bmin = axis.FindBin(ops.xmin)
+        bmax = axis.FindBin(ops.xmax)
+        scale = h1.Integral(bmin, bmax)
+        h1.Scale(1/scale)
 
 
     # set histogram boundaries
@@ -181,6 +226,9 @@ def main():
     draw_option = 'same '+draw_option
 
     legsize = 0.10
+    if ops.legsmall:
+        legsize = 0.05
+
     ylegsize = legsize
 
     # if option 2 is defined
@@ -195,8 +243,8 @@ def main():
 
         h2.SetTitle(ops.l2)
         h2.SetLineWidth(4)
-        h2.SetLineColor(ROOT.kGreen+2)
-        h2.SetLineStyle(1)
+        h2.SetLineColor(colours[1])
+        h2.SetLineStyle(styles[1])
         if ops.norm:
            h2.Scale(1./h2.Integral(0, h2.GetNbinsX()+1))
 
@@ -210,6 +258,13 @@ def main():
 
         if ops.normnbin >=0:
             scale = h2.GetBinContent(ops.normnbin)
+            h2.Scale(1/scale)
+
+        if ops.normrange:
+            axis = h2.GetXaxis()
+            bmin = axis.FindBin(ops.xmin)
+            bmax = axis.FindBin(ops.xmax)
+            scale = h2.Integral(bmin, bmax)
             h2.Scale(1/scale)
 
 
@@ -230,9 +285,8 @@ def main():
            h3 = addOverflow(h3)
         h3.SetTitle(ops.l3)
         h3.SetLineWidth(4)
-        h3.SetLineColor(ROOT.kBlue)
-        #h3.SetLineStyle(7)
-        h3.SetLineStyle(1)
+        h3.SetLineColor(colours[2])
+        h3.SetLineStyle(styles[2])
         if ops.norm:
            h3.Scale(1./h3.Integral(0, h3.GetNbinsX()+1))
 
@@ -248,6 +302,12 @@ def main():
             scale = h3.GetBinContent(ops.normnbin)
             h3.Scale(1/scale)
 
+        if ops.normrange:
+            axis = h3.GetXaxis()
+            bmin = axis.FindBin(ops.xmin)
+            bmax = axis.FindBin(ops.xmax)
+            scale = h3.Integral(bmin, bmax)
+            h3.Scale(1/scale)
 
         max3 =  h3.GetMaximum()
         maxi = max(maxi, max3)
@@ -266,9 +326,8 @@ def main():
            h4 = addOverflow(h4)
         h4.SetTitle(ops.l4)
         h4.SetLineWidth(4)
-        h4.SetLineColor(ROOT.kGreen+2)
-        #h4.SetLineStyle(9)
-        h4.SetLineStyle(1)
+        h4.SetLineColor(colours[3])
+        h4.SetLineStyle(styles[3])
         if ops.norm:
            h4.Scale(1./h4.Integral(0, h4.GetNbinsX()+1))
 
@@ -282,6 +341,13 @@ def main():
 
         if ops.normnbin >=0:
             scale = h4.GetBinContent(ops.normnbin)
+            h4.Scale(1/scale)
+
+        if ops.normrange:
+            axis = h4.GetXaxis()
+            bmin = axis.FindBin(ops.xmin)
+            bmax = axis.FindBin(ops.xmax)
+            scale = h4.Integral(bmin, bmax)
             h4.Scale(1/scale)
 
         max4 =  h4.GetMaximum()
@@ -300,9 +366,8 @@ def main():
            h5 = addOverflow(h5)
         h5.SetTitle(ops.l5)
         h5.SetLineWidth(4)
-        h5.SetLineColor(ROOT.kRed+1)
-        #h5.SetLineStyle(9)
-        h5.SetLineStyle(1)
+        h5.SetLineColor(colours[4])
+        h5.SetLineStyle(styles[4])
         if ops.norm:
            h5.Scale(1./h5.Integral(0, h5.GetNbinsX()+1))
 
@@ -316,6 +381,13 @@ def main():
 
         if ops.normnbin >=0:
             scale = h5.GetBinContent(ops.normnbin)
+            h5.Scale(1/scale)
+
+        if ops.normrange:
+            axis = h5.GetXaxis()
+            bmin = axis.FindBin(ops.xmin)
+            bmax = axis.FindBin(ops.xmax)
+            scale = h5.Integral(bmin, bmax)
             h5.Scale(1/scale)
 
         h5.Rebin(ops.rebin)
@@ -352,6 +424,10 @@ def main():
 
     # build legend
     leg = TLegend(0.50,0.86-legsize,0.90,0.86)
+    if ops.legsmall:
+        leg = TLegend(0.65,0.86-legsize,0.90,0.86)
+
+
     leg.AddEntry(h1,ops.l1,"l")
     if ops.f2:
         leg.AddEntry(h2,ops.l2,"l")
