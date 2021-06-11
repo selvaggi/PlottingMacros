@@ -401,8 +401,6 @@ def main():
 
 
 
-    print 'pass'
-
     h1.Draw(draw_option)
 
     if ops.xmin is not None and ops.xmax is not None:
@@ -418,8 +416,6 @@ def main():
 
     if ops.ymin:
        h1.SetMinimum(ops.ymin)
-
-    print 'set maxima and minima'
 
 
     # build legend
@@ -444,8 +440,6 @@ def main():
     leg.SetLineColor(0)
     leg.Draw()
 
-    print 'building legend'
-
     # add captions
     Text = ROOT.TLatex()
     Text.SetNDC()
@@ -464,7 +458,7 @@ def main():
     Text.SetTextAlign(22)
     Text.SetNDC(ROOT.kTRUE)
     #Text.SetTextSize(0.04)
-    Text.DrawLatex(0.32, 0.83, text)
+    Text.DrawLatex(0.37, 0.83, text)
 
     Text.SetTextAlign(22)
     Text.SetNDC(ROOT.kTRUE)
@@ -472,12 +466,8 @@ def main():
     if 'ell' in text:
        text = text.replace('#','\\')
     Text.SetTextSize(0.03)
-    Text.DrawLatex(0.32, 0.76, text)
+    Text.DrawLatex(0.37, 0.76, text)
 
-    print rt[0]
-    print rt[1]
-
-    print 'writing text'
 
     # this happens only if additional text
     if len(rt)>2:
@@ -485,7 +475,7 @@ def main():
         if 'ell' in text:
            text = text.replace('#','\\')
         Text.SetTextSize(0.03)
-        Text.DrawLatex(0.32, 0.70, text)
+        Text.DrawLatex(0.37, 0.70, text)
 
     if len(rt)>3:
         text = '#it{#bf{' + rt[3] +'}}'
@@ -501,7 +491,6 @@ def main():
     canvas.Modified()
     canvas.Update()
 
-    print 'canvas updating'
 
     pdir = os.path.dirname(ops.out)
     name = os.path.basename(ops.out)
@@ -511,7 +500,7 @@ def main():
        os.makedirs(pdir)
 
     if ops.png:
-        canvas.Print('{}.png'.format(filename), 'png')
+        canvas.Print('{}.bmp'.format(filename), 'bmp')
     #canvas.Print('{}.eps'.format(filename), 'eps')
     else:
         canvas.Print('{}.pdf'.format(filename), 'pdf')
