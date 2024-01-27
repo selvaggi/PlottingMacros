@@ -15,11 +15,11 @@ f = ROOT.TFile.Open(inputFile)
 tree = f.events
 
 nev = tree.GetEntries()
-
+nev = 25000
 debug = True
 if debug:
     nev = 1000
-    display_events = [808]
+    display_events = [455]
 
 
 h_jet_p = ROOT.TH1F("h_jet_p", "h_jet_p", 45, 0.0, 90.0)
@@ -62,7 +62,8 @@ for ev in tree:
         continue
 
     if debug:
-        if iev in [808]:
+        if iev in display_events:
+            from event_display import *
             create_event_display(ev)
 
     ## veto events with 2 bhadrons in same hemispehere

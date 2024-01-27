@@ -308,45 +308,7 @@ events_same_hemisphere = [
     98689,
 ]
 
-
+import math
 def logtr(score):
     return math.log10(score / (1 - score))
 
-
-import ROOT, math
-
-
-def create_event_display(ev):
-    jets_p4 = []
-    jets_s = []
-
-    bhadrons_p4 = []
-    bhadrons_v = []
-
-    gluons_p4 = []
-
-    for i in range(ev.event_njet):
-        jets_p4.append(
-            ROOT.TLorentzVector(ev.jet_px[i], ev.jet_py[i], ev.jet_pz[i], ev.jet_e[i])
-        )
-        jets_s.append(logtr(ev.recojet_isB[i]))
-
-    for i in range(ev.n_bhadrons):
-        bhadrons_p4.append(
-            ROOT.TLorentzVector(
-                ev.bhadron_px[i], ev.bhadron_py[i], ev.bhadron_pz[i], ev.bhadron_e[i]
-            )
-        )
-
-        bhadrons_v.append(
-            ROOT.TVector3(ev.bhadron_x[i], ev.bhadron_y[i], ev.bhadron_z[i])
-        )
-
-    for i in range(ev.n_partons):
-        if ev.parton_pid[i] != 21:
-            continue
-        gluons_p4.append(
-            ROOT.TLorentzVector(
-                ev.parton_px[i], ev.parton_py[i], ev.parton_pz[i], ev.parton_e[i]
-            )
-        )
