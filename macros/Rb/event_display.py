@@ -107,3 +107,21 @@ def create_event_display(ev):
     ax.set_zlabel("Z axis")
 
     plt.show()
+
+
+import sys
+inputFile = sys.argv[1]
+event_number = int(sys.argv[2])
+
+f = ROOT.TFile.Open(inputFile)
+tree = f.events
+
+iev = 0
+for ev in tree:
+    iev += 1
+    #print(iev,event_number)
+    if iev != event_number:
+        continue
+    
+    create_event_display(ev)
+    #break

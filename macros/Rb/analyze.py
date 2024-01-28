@@ -15,12 +15,9 @@ f = ROOT.TFile.Open(inputFile)
 tree = f.events
 
 nev = tree.GetEntries()
-nev = 25000
-debug = True
-if debug:
-    nev = 1000
-    display_events = [455]
-
+nev_req = 100000
+if nev_req <= nev:
+    nev = nev_req
 
 h_jet_p = ROOT.TH1F("h_jet_p", "h_jet_p", 45, 0.0, 90.0)
 
@@ -37,12 +34,18 @@ n_same_side = 0
 n_same_side_stag = 0
 n_same_side_dtag = 0
 
+n_2b_tag = 0
+n_0b_tag = 0
+n_2b = 0
+n_0b = 0
+
 
 n_presel = 0
 
 n_stag = 0
 n_dtag = 0
 
+#events_same_hemisphere = []
 
 for ev in tree:
     iev += 1
@@ -61,17 +64,11 @@ for ev in tree:
     if abs(math.cos(ev.jet_theta[1])) > 0.7:
         continue
 
-    if debug:
-        if iev in display_events:
-            from event_display import *
-            create_event_display(ev)
-
     ## veto events with 2 bhadrons in same hemispehere
     from utils import events_same_hemisphere
-
     # events_same_hemisphere = []
     # events_same_hemisphere = [808]
-    if iev in events_same_hemisphere:
+    if iev not in events_same_hemisphere:
         continue
 
     n_presel += 1
@@ -86,6 +83,12 @@ for ev in tree:
     ]
     b_hadrons_indices = b_hadrons_indices[:2]
 
+    b1_v = ROOT.TVector3(ev.bhadron_px[0], ev.bhadron_py[0], ev.bhadron_pz[0])
+    b2_v = ROOT.TVector3(ev.bhadron_px[1], ev.bhadron_py[1], ev.bhadron_pz[1])
+    #for j in b_hadrons_indices:
+    #    print(ev.bhadron_e[j])
+
+    print("---------")
     for i in range(ev.event_njet):
         # print(ev.jet_p[i])
 
@@ -113,6 +116,8 @@ for ev in tree:
             if jb_dot > 0:
                 n_bhadrons_same += 1
 
+        print(iev, tlv_j.P(), n_bhadrons_same, logtr(ev.recojet_isB[i]), logtr(ev.recojet_isB[i]) > cut_value)
+        print("  ", b1_v.Dot(b2_v), jb_scalar_products[0], jb_scalar_products[1])
         if logtr(ev.recojet_isB[i]) > cut_value:
             n_stag += 1
             h_jet_same_p.Fill(ev.jet_p[i])
@@ -139,6 +144,17 @@ for ev in tree:
                         if dotprod > 0:
                             n_bhadrons_dtagged_same += 1
 
+        ## check individual eps_2b and eps_0b
+        if n_bhadrons_same == 2:
+            n_2b += 1
+            if logtr(ev.recojet_isB[i]) > cut_value:
+                n_2b_tag += 1
+        
+        elif n_bhadrons_same == 0:
+            n_0b += 1
+            if logtr(ev.recojet_isB[i]) > cut_value:
+                n_0b_tag += 1
+
     if n_bhadrons_same == 2:
         events_same_hemisphere.append(iev)
         n_same_side += 1
@@ -147,7 +163,7 @@ for ev in tree:
     if n_bhadrons_dtagged_same == 2:
         n_same_side_dtag += 1
 
-
+#print(events_same_hemisphere)
 print("")
 print(f"number of analysed events: {nev}")
 print(f"number of pre-sel  events: {n_presel}")
@@ -161,8 +177,26 @@ eff_stag = n_stag / (2 * n_presel)
 eff_dtag = n_dtag / (2 * n_presel)
 rho_b = eff_dtag / eff_stag**2 - 1
 
+eff2 = n_2b_tag/n_2b
+eff0 = n_0b_tag/n_0b
+
+print(f"number of hemispheres with 2 b: {n_2b}")
+print(f"number of hemispheres with 0 b: {n_0b}")
+print(f"eff 2b: {100*eff2:.1f} %")
+print(f"eff 0b: {100*eff0:.1f} %")
+
+print(f"number of double tags hemispheres: {n_dtag}")
 print(f"eff single-tag: {100*eff_stag:.1f} %")
 print(f"eff double-tag: {100*eff_dtag:.1f} %")
+
+
+print("")
+print(f"number of single tag hemisphere: {n_stag}")
+print(f"number of double tags hemispheres: {n_dtag}")
+print(f"eff single-tag: {100*eff_stag:.1f} %")
+print(f"eff double-tag: {100*eff_dtag:.1f} %")
+
+
 print(f"rho b: {100*rho_b:.1f} %")
 
 print("")
