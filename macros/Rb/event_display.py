@@ -78,7 +78,7 @@ def create_event_display(ev):
             (jet.Px(), jet.Py(), jet.Pz()),
             "blue",
             2,
-            f"jet score = {score:.2f}"
+            f"jet score = {logtr(score):.2f}"
         )
 
     for bhadron, vertex in zip(bhadrons_p4, bhadrons_v):
