@@ -51,7 +51,7 @@ n_presel = 0
 n_stag = 0
 n_dtag = 0
 
-cut_value = -0.5
+cut_value = 0
 
 
 n_presel_nosame = 0 
